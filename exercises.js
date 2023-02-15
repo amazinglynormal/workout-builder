@@ -56,7 +56,12 @@ modules.exports = {
     "Pinwheel Curl",
     "Rope Hammer Curl",
   ],
-  calves: [],
+  calves: [
+    "Donkey Calf Raise",
+    "Leg Press Calves",
+    "Seated Calf Raise",
+    "Standing Calf Raises",
+  ],
   chest: [],
   delts: [],
   forearms: [],
