@@ -40,7 +40,7 @@ modules.exports = {
   ],
   biceps: [
     "Barbell Curl",
-    "Behind-the-back Cable Curl",
+    "Bayesian Curl",
     "Cable Curl",
     "Cable EZ Bar Curl",
     "Dumbbell Curl",
