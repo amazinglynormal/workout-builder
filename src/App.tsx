@@ -4,7 +4,6 @@ function App() {
   return (
     <div>
       <Header />
-      <h2>hell</h2>
     </div>
   );
 }
