@@ -1,8 +1,6 @@
 import Workout from "../interfaces/Workout.interface";
 
 const emptyWorkoutObject: Workout = {
-  numOfWorkoutDays: 1,
-  numOfWeeksToRunWorkout: 1,
   volume: {
     Abs: 0,
     "Back (Horizontal)": 0,

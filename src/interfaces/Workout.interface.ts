@@ -1,6 +1,4 @@
 interface Workout {
-  numOfWorkoutDays: number;
-  numOfWeeksToRunWorkout: number;
   volume: {
     [muscleGroup: string]: number;
   };
