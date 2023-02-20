@@ -142,7 +142,7 @@ export default {
     "Lying Leg Curl",
     "Seated Leg Curl",
   ],
-  Neck: ["Lateral Neck Flexion", "Neck Curl", "Neck Extension"],
+  Neck: ["Lateral Neck Flexion", "Neck Bridge", "Neck Curl", "Neck Extension"],
   Quads: [
     "Back Squat (High Bar)",
     "Back Squat (Low Bar)",
