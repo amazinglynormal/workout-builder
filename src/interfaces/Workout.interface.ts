@@ -7,9 +7,9 @@ interface Workout {
       [exerciseOrder: string]: {
         [exerciseSubOrder: string]: {
           name: string;
-          setScheme: string;
-          numOfSets: number;
-          repScheme: string;
+          setScheme: "sets" | "set range";
+          numOfSets: string;
+          repScheme: "reps" | "rep range" | "rep goal";
           numOfReps: string;
         };
       };
