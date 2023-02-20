@@ -11,7 +11,6 @@ interface Workout {
           numOfSets: number;
           repScheme: string;
           numOfReps: string;
-          dropsets: number;
         };
       };
     };
