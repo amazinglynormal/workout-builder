@@ -1,4 +1,4 @@
-import Workout from "../interfaces/Workout.interface";
+import Workout from "../interfacesAndTypes/Workout.interface";
 import VolumeCounterTableRow from "./VolumeCounterTableRow";
 
 interface Props {

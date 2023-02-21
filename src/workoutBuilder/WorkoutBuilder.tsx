@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import Workout from "../interfaces/Workout.interface";
+import Workout from "../interfacesAndTypes/Workout.interface";
 import DaysAndWeeksForm from "./DaysAndWeeksForm";
 
 interface Props {
