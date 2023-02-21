@@ -2,6 +2,7 @@ export default {
   Abs: [
     "Bicycle Crunches",
     "Cable Oblique Twists",
+    "Crunches",
     "Hanging Knee Raise",
     "Hanging Leg Raise",
     "Lying Leg Raise",
