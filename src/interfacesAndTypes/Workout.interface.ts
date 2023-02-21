@@ -1,3 +1,4 @@
+import RepScheme from "./RepScheme.type";
 import SetScheme from "./SetScheme.type";
 
 interface Workout {
@@ -11,7 +12,7 @@ interface Workout {
           name: string;
           setScheme: SetScheme;
           numOfSets: string;
-          repScheme: "reps" | "rep range" | "rep goal";
+          repScheme: RepScheme;
           numOfReps: string;
         };
       };
