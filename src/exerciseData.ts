@@ -135,6 +135,7 @@ export default {
     "Back Extension",
     "Barbell Stiff-leg Deadlift",
     "Barbell Romanian Deadlift",
+    "Deadlift",
     "Dumbbell Stiff-leg Deadlift",
     "Dumbbell Romanian Deadlift",
     "Glute Ham Raise",
