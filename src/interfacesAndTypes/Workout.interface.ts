@@ -1,3 +1,5 @@
+import SetScheme from "./SetScheme.type";
+
 interface Workout {
   volume: {
     [muscleGroup: string]: number;
@@ -7,7 +9,7 @@ interface Workout {
       [exerciseOrder: string]: {
         [exerciseSubOrder: string]: {
           name: string;
-          setScheme: "sets" | "set range";
+          setScheme: SetScheme;
           numOfSets: string;
           repScheme: "reps" | "rep range" | "rep goal";
           numOfReps: string;
