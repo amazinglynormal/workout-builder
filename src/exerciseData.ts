@@ -1,3 +1,5 @@
+import ExerciseData from "./interfacesAndTypes/ExerciseData.interface";
+
 export default {
   Abs: [
     "Bicycle Crunches",
@@ -177,4 +179,4 @@ export default {
     "Rope Tricep Pushdown",
     "Rope Tricep Overhead Extension",
   ],
-};
+} as ExerciseData;
