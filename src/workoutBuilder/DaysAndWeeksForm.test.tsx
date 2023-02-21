@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import DaysAndWeeksForm from "./DaysAndWeeksForm";
 import userEvent from "@testing-library/user-event";
 
