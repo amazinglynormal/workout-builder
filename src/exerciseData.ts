@@ -165,6 +165,7 @@ export default {
     "Barbell Bent Shrug",
     "Dumbbell Shrug",
     "Dumbbell Bent Shrug",
+    "Power Shrug",
   ],
   Triceps: [
     "Assisted Dips (Tricep)",
