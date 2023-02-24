@@ -1,16 +1,17 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent } from "react";
 
 interface Props {
   value: number;
-  setValue: Dispatch<SetStateAction<number>>;
   label: string;
   id: string;
+  changeHandler: (id: string, newValue: number) => void;
 }
 
-const NumberInput = ({ value, setValue, label, id }: Props) => {
+const NumberInput = ({ value, label, id, changeHandler }: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(event.target.value);
-    setValue(newValue);
+    const id = event.target.id;
+    changeHandler(id, newValue);
   };
 
   return (

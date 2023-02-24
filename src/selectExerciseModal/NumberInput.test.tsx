@@ -11,7 +11,7 @@ describe("<NumberInput>", () => {
         id="test-id"
         label="Test Label"
         value={1}
-        setValue={mockChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
 
@@ -26,7 +26,7 @@ describe("<NumberInput>", () => {
         id="test-id"
         label="Test Label"
         value={1}
-        setValue={mockChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
 
@@ -42,7 +42,7 @@ describe("<NumberInput>", () => {
         id="test-id"
         label="Test Label"
         value={1}
-        setValue={mockChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
 

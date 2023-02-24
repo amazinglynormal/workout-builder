@@ -2,19 +2,18 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NumberRangeInput from "./NumberRangeInput";
 
-const mockLowerChangeHandler = jest.fn();
-const mockHigherChangeHandler = jest.fn();
+const mockChangeHandler = jest.fn();
 
 describe("<NumberRangeInput>", () => {
   test("renders correctly in the DOM", () => {
     const { getByLabelText } = render(
       <NumberRangeInput
+        id="test"
         lowerValueLabel="Test Lower Label"
         higherValueLabel="Test Higher Label"
         lowerValue={1}
         higherValue={2}
-        setLowerValue={mockLowerChangeHandler}
-        setHigherValue={mockHigherChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
 
@@ -30,28 +29,28 @@ describe("<NumberRangeInput>", () => {
   test("calls changeHandler when user changes value", () => {
     const { getByLabelText } = render(
       <NumberRangeInput
+        id="test"
         lowerValueLabel="Test Lower Label"
         higherValueLabel="Test Higher Label"
         lowerValue={1}
         higherValue={6}
-        setLowerValue={mockLowerChangeHandler}
-        setHigherValue={mockHigherChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
     const higherRangeInput = getByLabelText("Test Higher Label");
     userEvent.type(higherRangeInput, "7");
-    expect(mockHigherChangeHandler).toHaveBeenCalled();
+    expect(mockChangeHandler).toHaveBeenCalled();
   });
 
   test("focus on click", () => {
     const { getByLabelText } = render(
       <NumberRangeInput
+        id="test"
         lowerValueLabel="Test Lower Label"
         higherValueLabel="Test Higher Label"
         lowerValue={1}
         higherValue={2}
-        setLowerValue={mockLowerChangeHandler}
-        setHigherValue={mockHigherChangeHandler}
+        changeHandler={mockChangeHandler}
       />
     );
 
