@@ -6,7 +6,7 @@ interface Props {
   higherValue: number;
   lowerValueLabel: string;
   higherValueLabel: string;
-  changeHandler: (id: string, newValue: number) => void;
+  changeHandler: (id: string, newValue: string) => void;
 }
 
 const NumberRangeInput = ({
@@ -18,7 +18,7 @@ const NumberRangeInput = ({
   changeHandler,
 }: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(event.target.value);
+    const newValue = event.target.value;
     const id = event.target.id;
 
     changeHandler(id, newValue);

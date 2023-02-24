@@ -4,12 +4,12 @@ interface Props {
   value: number;
   label: string;
   id: string;
-  changeHandler: (id: string, newValue: number) => void;
+  changeHandler: (id: string, newValue: string) => void;
 }
 
 const NumberInput = ({ value, label, id, changeHandler }: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(event.target.value);
+    const newValue = event.target.value;
     const id = event.target.id;
     changeHandler(id, newValue);
   };
