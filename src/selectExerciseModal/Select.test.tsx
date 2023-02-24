@@ -9,7 +9,7 @@ const testOptionsTwo: { [name: string]: string[] } = {
   optionGroup2: ["option 4", "option 5", "option 6"],
 };
 
-const mockSetSelected = jest.fn();
+const mockChangeHandler = jest.fn();
 
 describe("<Select>", () => {
   test("renders correctly in the DOM with options array", () => {
@@ -19,7 +19,7 @@ describe("<Select>", () => {
         label="Test Label"
         options={testOptionsOne}
         selected={testOptionsOne[0]}
-        setSelected={mockSetSelected}
+        changeHandler={mockChangeHandler}
       />
     );
 
@@ -35,7 +35,7 @@ describe("<Select>", () => {
         label="Test Label"
         options={testOptionsTwo}
         selected={testOptionsTwo.optionGroup2[0]}
-        setSelected={mockSetSelected}
+        changeHandler={mockChangeHandler}
       />
     );
 
@@ -54,14 +54,14 @@ describe("<Select>", () => {
         label="Test Label"
         options={testOptionsOne}
         selected={testOptionsOne[0]}
-        setSelected={mockSetSelected}
+        changeHandler={mockChangeHandler}
       />
     );
 
     userEvent.selectOptions(getByRole("combobox"), ["option 2"]);
-    expect(mockSetSelected).toHaveBeenCalled();
+    expect(mockChangeHandler).toHaveBeenCalled();
 
     userEvent.selectOptions(getByRole("combobox"), ["option 1"]);
-    expect(mockSetSelected).toHaveBeenCalledTimes(2);
+    expect(mockChangeHandler).toHaveBeenCalledTimes(2);
   });
 });

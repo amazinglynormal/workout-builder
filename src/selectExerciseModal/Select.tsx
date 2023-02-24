@@ -10,7 +10,7 @@ interface Props {
       };
   isDisabled?: boolean;
   selected: string;
-  setSelected: Dispatch<SetStateAction<any>>;
+  changeHandler: (id: string, value: string) => void;
 }
 
 const Select = ({
@@ -19,7 +19,7 @@ const Select = ({
   options,
   isDisabled = false,
   selected,
-  setSelected,
+  changeHandler,
 }: Props) => {
   const isSelectOptionsArray = Array.isArray(options);
 
@@ -51,7 +51,8 @@ const Select = ({
 
   const onChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const option = event.target.value;
-    setSelected(option);
+    const id = event.target.id;
+    changeHandler(id, option);
   };
 
   return (
