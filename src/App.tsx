@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import VolumeCounter from "./volumeCounter/VolumeCounter";
 import emptyWorkoutObject from "./utils/emptyWorkoutObject";
 import WorkoutBuilder from "./workoutBuilder/WorkoutBuilder";
-import Workout from "./interfaces/Workout.interface";
+import SelectExerciseModal from "./selectExerciseModal/SelectExerciseModal";
 
 function App() {
   const [numOfWorkoutDays, setNumOfWorkoutDays] = useState(1);
@@ -20,6 +20,7 @@ function App() {
         setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
       />
       <VolumeCounter workoutInfo={workoutInfo} />
+      <SelectExerciseModal />
     </div>
   );
 }
