@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 interface Props {
   note?: string;
-  setNote: Dispatch<SetStateAction<string>>;
+  setNote: Dispatch<SetStateAction<string | undefined>>;
   setShowTextArea: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -15,9 +15,6 @@ const AddNoteTextArea = ({ note, setNote, setShowTextArea }: Props) => {
   };
 
   const onSubmitHandler = () => {
-    if (!localNoteState) {
-      return;
-    }
     setNote(localNoteState);
     setShowTextArea(false);
   };
