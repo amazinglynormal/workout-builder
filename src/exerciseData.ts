@@ -110,7 +110,7 @@ export default {
     "Face Pull",
     "Machine Shoulder Press",
     "Machine Lateral Raise",
-    "Pec Deck Rear Delt Flye",
+    "Reverse Pec Deck",
     "Skiers",
   ],
   Forearms: [
