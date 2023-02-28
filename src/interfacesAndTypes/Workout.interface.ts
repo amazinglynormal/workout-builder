@@ -10,10 +10,12 @@ interface Workout {
       [exerciseOrder: string]: {
         [exerciseSubOrder: string]: {
           name: string;
+          muscleGroup: string;
           setScheme: SetScheme;
           numOfSets: string;
           repScheme: RepScheme;
           numOfReps: string;
+          note?: string;
         };
       };
     };
