@@ -1,4 +1,4 @@
-import Exercise from "./Exercise.interface";
+import ExerciseList from "./ExerciseList.type";
 
 interface Workout {
   volume: {
@@ -7,7 +7,7 @@ interface Workout {
   exerciseSelection: {
     [dayNumber: string]: {
       title: string;
-      exercises: Exercise | Exercise[];
+      exercises: ExerciseList;
     };
   };
 }
