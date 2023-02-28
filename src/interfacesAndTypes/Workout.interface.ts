@@ -1,23 +1,13 @@
-import RepScheme from "./RepScheme.type";
-import SetScheme from "./SetScheme.type";
+import Exercise from "./Exercise.interface";
 
 interface Workout {
   volume: {
     [muscleGroup: string]: number;
   };
   exerciseSelection: {
-    [dayName: string]: {
-      [exerciseOrder: string]: {
-        [exerciseSubOrder: string]: {
-          name: string;
-          muscleGroup: string;
-          setScheme: SetScheme;
-          numOfSets: string;
-          repScheme: RepScheme;
-          numOfReps: string;
-          note?: string;
-        };
-      };
+    [dayNumber: string]: {
+      title: string;
+      exercises: Exercise | Exercise[];
     };
   };
 }

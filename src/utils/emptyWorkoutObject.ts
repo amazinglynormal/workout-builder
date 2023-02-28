@@ -19,7 +19,8 @@ const emptyWorkoutObject: Workout = {
   },
   exerciseSelection: {
     "Day #1": {
-      "1": {},
+      title: "Day #1",
+      exercises: [],
     },
   },
 };
