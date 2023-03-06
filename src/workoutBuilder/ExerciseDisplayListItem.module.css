@@ -1,0 +1,9 @@
+.listItemLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.listItemInfo {
+  display: flex;
+  justify-content: space-between;
+}
