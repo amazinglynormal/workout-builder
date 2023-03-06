@@ -1,5 +1,5 @@
 import Exercise from "./Exercise.interface";
 
-type ExerciseList = Exercise[] | Exercise[][];
+type ExerciseList = Exercise[][];
 
 export default ExerciseList;

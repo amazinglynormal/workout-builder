@@ -19,7 +19,8 @@ const testWorkoutObject: Workout = {
   },
   exerciseSelection: {
     "Day #1": {
-      "1": {},
+      title: "Test Day #1",
+      exercises: [],
     },
   },
 };
