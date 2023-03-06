@@ -1,0 +1,11 @@
+.border {
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.border > div {
+  display: flex;
+}
