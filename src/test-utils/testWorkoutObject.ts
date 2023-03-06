@@ -17,12 +17,12 @@ const testWorkoutObject: Workout = {
     Traps: 0,
     Triceps: 9,
   },
-  exerciseSelection: {
-    "Day #1": {
+  exerciseSelection: [
+    {
       title: "Test Day #1",
       exercises: [],
     },
-  },
+  ],
 };
 
 export default testWorkoutObject;

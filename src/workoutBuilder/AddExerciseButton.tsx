@@ -1,15 +1,22 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction } from "react";
+import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
+import styles from "./AddExerciseButton.module.css";
 
 interface Props {
   text: string;
-  onClickHandler: Dispatch<SetStateAction<string>>;
+  openModal: (exerciseLocation: ExerciseLocation) => void;
+  exerciseLocation: { day: number; index: number; subIndex: number };
 }
 
-const AddExerciseButton = ({ text, onClickHandler }: Props) => {
+const AddExerciseButton = ({ text, openModal, exerciseLocation }: Props) => {
   return (
-    <button type="button" onClick={() => onClickHandler(text)}>
-      <span>{<PlusIcon />}</span>
+    <button
+      type="button"
+      onClick={() => openModal(exerciseLocation)}
+      className={styles.button}
+    >
+      <span>{<PlusIcon className={styles.icon} />}</span>
       {`Add ${text}`}
     </button>
   );

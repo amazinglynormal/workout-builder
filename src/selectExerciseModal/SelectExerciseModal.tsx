@@ -2,12 +2,24 @@ import Select from "./Select";
 import styles from "./SelectExerciseModal.module.css";
 
 import exerciseData from "../exerciseData";
-import { ChangeEvent, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  EventHandler,
+  MouseEventHandler,
+  SetStateAction,
+  useState,
+} from "react";
 import SetsAndRepsModifier from "./SetsAndRepsModifier";
 import AddNote from "./AddNote";
 import AddCustomExercise from "./AddCustomExercise";
 
-const SelectExerciseModal = () => {
+interface Props {
+  closeModal: () => void;
+  exerciseLocation: { day: number; index: number; subIndex: number };
+}
+
+const SelectExerciseModal = ({ closeModal }: Props) => {
   let muscleGroups = Object.keys(exerciseData);
   const [selectedMuscleGroup, setSelectedMuscleGroup] = useState(
     muscleGroups[0]
@@ -35,60 +47,71 @@ const SelectExerciseModal = () => {
   };
 
   return (
-    <div className={styles.modal}>
-      <div>
+    <div className={styles.overlay} onClick={closeModal}>
+      <div
+        className={styles.modal}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         <div>
-          <label htmlFor="use-exercise-select">Use exercise select</label>
-          <input
-            type="checkbox"
-            id="use-exercise-select"
-            checked={chooseExerciseMode === "exercise-select"}
-            onChange={onCheckboxChange}
+          <div>
+            <label htmlFor="use-exercise-select">Use exercise select</label>
+            <input
+              type="checkbox"
+              id="use-exercise-select"
+              checked={chooseExerciseMode === "exercise-select"}
+              onChange={onCheckboxChange}
+            />
+          </div>
+          <Select
+            id="muscle-group-select"
+            label="Muscle Group"
+            options={muscleGroups}
+            selected={selectedMuscleGroup}
+            setSelected={setSelectedMuscleGroup}
+            isDisabled={chooseExerciseMode === "custom-exercise"}
+          />
+          <Select
+            id="exercise-select"
+            label="Exercises"
+            options={exerciseData[selectedMuscleGroup]}
+            selected={selectedExercise}
+            setSelected={setSelectedExercise}
+            isDisabled={chooseExerciseMode === "custom-exercise"}
           />
         </div>
-        <Select
-          id="muscle-group-select"
-          label="Muscle Group"
-          options={muscleGroups}
-          selected={selectedMuscleGroup}
-          setSelected={setSelectedMuscleGroup}
-          isDisabled={chooseExerciseMode === "custom-exercise"}
-        />
-        <Select
-          id="exercise-select"
-          label="Exercises"
-          options={exerciseData[selectedMuscleGroup]}
-          selected={selectedExercise}
-          setSelected={setSelectedExercise}
-          isDisabled={chooseExerciseMode === "custom-exercise"}
-        />
-      </div>
-      <div>
         <div>
-          <label htmlFor="use-custom-exercise">Use custom exercise input</label>
-          <input
-            type="checkbox"
-            id="use-custom-exercise"
-            checked={chooseExerciseMode === "custom-exercise"}
-            onChange={onCheckboxChange}
+          <div>
+            <label htmlFor="use-custom-exercise">
+              Use custom exercise input
+            </label>
+            <input
+              type="checkbox"
+              id="use-custom-exercise"
+              checked={chooseExerciseMode === "custom-exercise"}
+              onChange={onCheckboxChange}
+            />
+          </div>
+          <AddCustomExercise
+            muscleGroupOptions={muscleGroups}
+            isDisabled={chooseExerciseMode === "exercise-select"}
+            customExercise={selectedExercise}
+            selectedMuscleGroup={selectedMuscleGroup}
+            setSelectedMuscleGroup={setSelectedMuscleGroup}
+            setCustomExercise={setSelectedExercise}
           />
         </div>
-        <AddCustomExercise
-          muscleGroupOptions={muscleGroups}
-          isDisabled={chooseExerciseMode === "exercise-select"}
-          customExercise={selectedExercise}
-          selectedMuscleGroup={selectedMuscleGroup}
-          setSelectedMuscleGroup={setSelectedMuscleGroup}
-          setCustomExercise={setSelectedExercise}
-        />
-      </div>
-      <div>
-        <SetsAndRepsModifier />
-        <AddNote note={note} setNote={setNote} />
-      </div>
-      <div>
-        <button type="button">Add exercise</button>
-        <button type="button">Cancel</button>
+        <div>
+          <SetsAndRepsModifier />
+          <AddNote note={note} setNote={setNote} />
+        </div>
+        <div>
+          <button type="button">Add exercise</button>
+          <button type="button" onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

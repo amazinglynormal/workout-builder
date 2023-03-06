@@ -2,9 +2,22 @@ import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SelectExerciseModal from "./SelectExerciseModal";
 
+const mockCloseModal = jest.fn();
+
+const mockExerciseLocation = {
+  day: 0,
+  index: 0,
+  subIndex: 0,
+};
+
 describe("<SelectExerciseModal>", () => {
   test("renders correctly in the DOM", () => {
-    const { getAllByRole } = render(<SelectExerciseModal />);
+    const { getAllByRole } = render(
+      <SelectExerciseModal
+        closeModal={mockCloseModal}
+        exerciseLocation={mockExerciseLocation}
+      />
+    );
 
     const checkboxes = getAllByRole("checkbox");
     expect(checkboxes.length).toBe(2);
@@ -21,7 +34,12 @@ describe("<SelectExerciseModal>", () => {
   });
 
   test("disables exercise select and un-disables custom exercise input on checkbox click", () => {
-    const { getAllByRole } = render(<SelectExerciseModal />);
+    const { getAllByRole } = render(
+      <SelectExerciseModal
+        closeModal={mockCloseModal}
+        exerciseLocation={mockExerciseLocation}
+      />
+    );
 
     let checkboxes = getAllByRole("checkbox");
     expect(checkboxes.length).toBe(2);
