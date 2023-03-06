@@ -30,11 +30,13 @@ describe("<ExerciseDisplayListItem>", () => {
   test("renders correctly in the DOM without note", () => {
     const { getByRole, getAllByRole } = render(
       <ol>
-        <ExerciseDisplayListItem
-          exercise={testExerciseList[0][0]}
-          index={0}
-          deleteExercise={mockDeleteExercise}
-        />
+        <li>
+          <ExerciseDisplayListItem
+            exercise={testExerciseList[0][0]}
+            index={0}
+            deleteExercise={mockDeleteExercise}
+          />
+        </li>
       </ol>
     );
 
@@ -51,11 +53,13 @@ describe("<ExerciseDisplayListItem>", () => {
   test("renders correctly in the DOM with note", () => {
     const { getByRole, getAllByRole } = render(
       <ol>
-        <ExerciseDisplayListItem
-          exercise={testExerciseList[2][2]}
-          index={0}
-          deleteExercise={mockDeleteExercise}
-        />
+        <li>
+          <ExerciseDisplayListItem
+            exercise={testExerciseList[2][2]}
+            index={0}
+            deleteExercise={mockDeleteExercise}
+          />
+        </li>
       </ol>
     );
 
@@ -74,11 +78,13 @@ describe("<ExerciseDisplayListItem>", () => {
   test("renders note with 'Hide note' button when 'View note' button is clicked", () => {
     const { getByRole, getAllByRole } = render(
       <ol>
-        <ExerciseDisplayListItem
-          exercise={testExerciseList[2][2]}
-          index={0}
-          deleteExercise={mockDeleteExercise}
-        />
+        <li>
+          <ExerciseDisplayListItem
+            exercise={testExerciseList[2][2]}
+            index={0}
+            deleteExercise={mockDeleteExercise}
+          />
+        </li>
       </ol>
     );
 
@@ -97,11 +103,13 @@ describe("<ExerciseDisplayListItem>", () => {
   test("renders 'View note' button when 'Hide note' button is clicked", () => {
     const { getByRole, getAllByRole } = render(
       <ol>
-        <ExerciseDisplayListItem
-          exercise={testExerciseList[2][2]}
-          index={0}
-          deleteExercise={mockDeleteExercise}
-        />
+        <li>
+          <ExerciseDisplayListItem
+            exercise={testExerciseList[2][2]}
+            index={0}
+            deleteExercise={mockDeleteExercise}
+          />
+        </li>
       </ol>
     );
 
@@ -126,12 +134,14 @@ describe("<ExerciseDisplayListItem>", () => {
   test("calls deleteExercise when 'Delete' button is click", () => {
     const { getAllByRole } = render(
       <ol>
-        <ExerciseDisplayListItem
-          exercise={testExerciseList[2][2]}
-          index={0}
-          subIndex={1}
-          deleteExercise={mockDeleteExercise}
-        />
+        <li>
+          <ExerciseDisplayListItem
+            exercise={testExerciseList[2][2]}
+            index={0}
+            subIndex={1}
+            deleteExercise={mockDeleteExercise}
+          />
+        </li>
       </ol>
     );
 

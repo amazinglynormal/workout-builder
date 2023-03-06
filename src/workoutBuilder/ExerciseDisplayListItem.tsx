@@ -17,7 +17,7 @@ const ExerciseDisplayListItem = ({
 }: Props) => {
   const [showNote, setShowNote] = useState(false);
   return (
-    <li>
+    <>
       <div className={styles.listItemLayout}>
         <div className={styles.listItemInfo}>
           {`${exercise.name} ${exercise.numOfSets} x ${exercise.numOfReps}${
@@ -50,7 +50,7 @@ const ExerciseDisplayListItem = ({
           </div>
         )}
       </div>
-    </li>
+    </>
   );
 };
 
