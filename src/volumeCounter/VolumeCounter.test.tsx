@@ -5,7 +5,7 @@ import testWorkoutObject from "../test-utils/testWorkoutObject";
 describe("<VolumeCounter>", () => {
   test("renders correctly in the DOM", () => {
     const { getByRole, getByText } = render(
-      <VolumeCounter workoutInfo={testWorkoutObject} />
+      <VolumeCounter workoutProgram={testWorkoutObject} />
     );
 
     const heading = getByRole("heading");

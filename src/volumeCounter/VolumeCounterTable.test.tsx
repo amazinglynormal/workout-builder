@@ -5,7 +5,7 @@ import testWorkoutObject from "../test-utils/testWorkoutObject";
 describe("<VolumeCounterTable>", () => {
   test("renders correctly in the DOM", () => {
     const { getAllByRole, getByRole } = render(
-      <VolumeCounterTable workoutInfo={testWorkoutObject} />
+      <VolumeCounterTable workoutProgram={testWorkoutObject} />
     );
 
     const table = getByRole("table");
