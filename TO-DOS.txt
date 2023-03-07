@@ -1,0 +1,4 @@
+1. <ExerciseDisplay> edit functionality
+2. CLEAR DAY functionality in <DayHeader>
+3. Generate PDF functionality
+4. Download PDF functionality
