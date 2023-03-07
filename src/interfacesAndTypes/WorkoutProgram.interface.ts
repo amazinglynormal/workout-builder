@@ -1,15 +1,15 @@
 import ExerciseList from "./ExerciseList.type";
 
-interface Workout {
+interface WorkoutProgram {
   volume: {
     [muscleGroup: string]: number;
   };
-  exerciseSelection: {
-    [dayNumber: string]: {
+  exerciseSelection: [
+    {
       title: string;
       exercises: ExerciseList;
-    };
-  };
+    }
+  ];
 }
 
-export default Workout;
+export default WorkoutProgram;
