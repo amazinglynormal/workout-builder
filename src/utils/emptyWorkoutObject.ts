@@ -1,6 +1,6 @@
-import Workout from "../interfacesAndTypes/Workout.interface";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
-const emptyWorkoutObject: Workout = {
+const emptyWorkoutObject: WorkoutProgram = {
   volume: {
     Abs: 0,
     "Back (Horizontal)": 0,

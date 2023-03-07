@@ -1,6 +1,6 @@
-import Workout from "../interfacesAndTypes/Workout.interface";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
-const testWorkoutObject: Workout = {
+const testWorkoutObject: WorkoutProgram = {
   volume: {
     Abs: 6,
     "Back (Horizontal)": 6,

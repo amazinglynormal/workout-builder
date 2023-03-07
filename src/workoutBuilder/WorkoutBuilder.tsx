@@ -1,21 +1,25 @@
 import { Dispatch, SetStateAction } from "react";
-import Workout from "../interfacesAndTypes/Workout.interface";
+import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
+import DayBuilder from "./DayBuilder";
 import DaysAndWeeksForm from "./DaysAndWeeksForm";
 
 interface Props {
-  workoutInfo: Workout;
+  workoutProgram: WorkoutProgram;
   numOfWorkoutDays: number;
   numOfWeeksToRunProgram: number;
   setNumOfWorkoutDays: Dispatch<SetStateAction<number>>;
   setNumOfWeeksToRunProgram: Dispatch<SetStateAction<number>>;
+  openModal: (exerciseLocation: ExerciseLocation) => void;
 }
 
 const WorkoutBuilder = ({
-  workoutInfo,
+  workoutProgram,
   numOfWorkoutDays,
   numOfWeeksToRunProgram,
   setNumOfWorkoutDays,
   setNumOfWeeksToRunProgram,
+  openModal,
 }: Props) => {
   return (
     <div>
@@ -24,6 +28,11 @@ const WorkoutBuilder = ({
         weeks={numOfWeeksToRunProgram}
         setNumOfWorkoutDays={setNumOfWorkoutDays}
         setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
+      />
+      <DayBuilder
+        day={0}
+        workoutProgram={workoutProgram}
+        openModal={openModal}
       />
     </div>
   );

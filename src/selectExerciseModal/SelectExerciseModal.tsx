@@ -2,21 +2,15 @@ import Select from "./Select";
 import styles from "./SelectExerciseModal.module.css";
 
 import exerciseData from "../exerciseData";
-import {
-  ChangeEvent,
-  Dispatch,
-  EventHandler,
-  MouseEventHandler,
-  SetStateAction,
-  useState,
-} from "react";
+import { ChangeEvent, useState } from "react";
 import SetsAndRepsModifier from "./SetsAndRepsModifier";
 import AddNote from "./AddNote";
 import AddCustomExercise from "./AddCustomExercise";
+import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
 
 interface Props {
   closeModal: () => void;
-  exerciseLocation: { day: number; index: number; subIndex: number };
+  exerciseLocation: ExerciseLocation;
 }
 
 const SelectExerciseModal = ({ closeModal }: Props) => {

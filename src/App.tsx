@@ -9,7 +9,7 @@ import ExerciseLocation from "./interfacesAndTypes/ExerciseLocation.interface";
 function App() {
   const [numOfWorkoutDays, setNumOfWorkoutDays] = useState(1);
   const [numOfWeeksToRunProgram, setNumOfWeeksToRunProgram] = useState(1);
-  const [workoutInfo, setWorkoutInfo] = useState(emptyWorkoutObject);
+  const [workoutProgram, setWorkoutProgram] = useState(emptyWorkoutObject);
   const [showModal, setShowModal] = useState(false);
   const [exerciseLocation, setExerciseLocation] = useState<ExerciseLocation>({
     day: 0,
@@ -36,14 +36,14 @@ function App() {
       )}
       <Header />
       <WorkoutBuilder
-        workoutInfo={workoutInfo}
+        workoutProgram={workoutProgram}
         numOfWorkoutDays={numOfWorkoutDays}
         numOfWeeksToRunProgram={numOfWeeksToRunProgram}
         setNumOfWorkoutDays={setNumOfWorkoutDays}
         setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
         openModal={openModal}
       />
-      <VolumeCounter workoutInfo={workoutInfo} />
+      <VolumeCounter workoutProgram={workoutProgram} />
     </div>
   );
 }
