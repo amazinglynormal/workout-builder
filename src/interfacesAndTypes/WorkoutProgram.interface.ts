@@ -1,6 +1,8 @@
 import ExerciseList from "./ExerciseList.type";
 
 interface WorkoutProgram {
+  numOfDaysPerWeek: number;
+  numOfWeeks: number;
   volume: {
     [muscleGroup: string]: number;
   };
