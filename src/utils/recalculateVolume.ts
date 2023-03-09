@@ -9,7 +9,13 @@ function recalculateVolume(workoutProgram: WorkoutProgram) {
   workoutProgram.exerciseSelection.forEach((day) => {
     day.exercises.forEach((exList) => {
       exList.forEach((ex) => {
-        workoutProgram.volume[ex.muscleGroup] += Number(ex.numOfSets);
+        if (ex.numOfSets.includes("-")) {
+          workoutProgram.volume[ex.muscleGroup] += Number(
+            ex.numOfSets.split("-")[1]
+          );
+        } else {
+          workoutProgram.volume[ex.muscleGroup] += Number(ex.numOfSets);
+        }
       });
     });
   });
