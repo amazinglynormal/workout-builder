@@ -1,18 +1,14 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useState,
-} from "react";
+import { ChangeEvent, Dispatch, FormEvent, useState } from "react";
+import Action from "../context/workoutProgramReducerAction.type";
 import styles from "./DayHeader.module.css";
 
 interface Props {
   title: string;
-  setTitle: Dispatch<SetStateAction<string>>;
+  dispatch: Dispatch<Action>;
+  day: number;
 }
 
-const DayHeader = ({ title, setTitle }: Props) => {
+const DayHeader = ({ title, dispatch, day }: Props) => {
   const [showTitleChangeInput, setShowTitleChangeInput] = useState(false);
   const [inputTitle, setInputTitle] = useState(title);
 
@@ -22,7 +18,11 @@ const DayHeader = ({ title, setTitle }: Props) => {
 
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setTitle(inputTitle);
+    dispatch({
+      type: "EDIT_TITLE",
+      newTitle: inputTitle,
+      day,
+    });
     setShowTitleChangeInput(false);
   };
 

@@ -5,8 +5,8 @@ import styles from "./ExerciseDisplayListItem.module.css";
 interface Props {
   exercise: Exercise;
   index: number;
-  subIndex?: number;
-  deleteExercise: (index: number, subIndex?: number) => void;
+  subIndex: number;
+  deleteExercise: (index: number, subIndex: number) => void;
 }
 
 const ExerciseDisplayListItem = ({
