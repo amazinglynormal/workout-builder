@@ -48,8 +48,20 @@ function workoutProgramReducer(draft: WorkoutProgram, action: Action) {
       const index = action.exerciseLocation.index;
       const subIndex = action.exerciseLocation.subIndex;
 
-      draft.exerciseSelection[day].exercises[index][subIndex] =
-        action.newExerciseInfo;
+      if (draft.exerciseSelection[day].exercises.length === 0) {
+        draft.exerciseSelection[day].exercises.push([action.newExerciseInfo]);
+      } else if (draft.exerciseSelection[day].exercises.length === index) {
+        draft.exerciseSelection[day].exercises.push([action.newExerciseInfo]);
+      } else if (
+        draft.exerciseSelection[day].exercises[index].length <= subIndex
+      ) {
+        draft.exerciseSelection[day].exercises[index].push(
+          action.newExerciseInfo
+        );
+      } else {
+        draft.exerciseSelection[day].exercises[index][subIndex] =
+          action.newExerciseInfo;
+      }
 
       recalculateVolume(draft);
       break;
@@ -59,7 +71,11 @@ function workoutProgramReducer(draft: WorkoutProgram, action: Action) {
       const index = action.exerciseLocation.index;
       const subIndex = action.exerciseLocation.subIndex;
 
-      draft.exerciseSelection[day].exercises[index].splice(subIndex, 1);
+      if (draft.exerciseSelection[day].exercises[index].length === 1) {
+        draft.exerciseSelection[day].exercises.splice(index, 1);
+      } else {
+        draft.exerciseSelection[day].exercises[index].splice(subIndex, 1);
+      }
 
       recalculateVolume(draft);
       break;

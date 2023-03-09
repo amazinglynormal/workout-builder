@@ -66,7 +66,7 @@ const NumberRangeInput = ({
 
         reducerDispatch({
           type: "UPDATE_REPS_NUM",
-          newInfo: `${newValue - 1}-${newValue}`,
+          newInfo: `${1}-${newValue}`,
         });
         return;
       }
@@ -105,7 +105,7 @@ const NumberRangeInput = ({
         }
         reducerDispatch({
           type: "UPDATE_SETS_NUM",
-          newInfo: `${newValue - 1}-${newValue}`,
+          newInfo: `${1}-${newValue}`,
         });
 
         return;

@@ -73,13 +73,13 @@ function exerciseReducer(draft: Exercise, action: ExerciseReducerAction) {
 const SelectExerciseModal = ({ closeModal, exerciseLocation }: Props) => {
   const { exerciseSelection } = useWorkoutProgram();
   const dispatch = useWorkoutProgramDispatch();
-
-  let startExercise = exerciseSelection[exerciseLocation.day].exercises[
-    exerciseLocation.index
-  ].at(exerciseLocation.subIndex);
-
-  if (!startExercise) {
-    startExercise = defaultExercise;
+  const { day, index, subIndex } = exerciseLocation;
+  let startExercise = defaultExercise;
+  if (
+    exerciseSelection[day].exercises.length > index &&
+    exerciseSelection[day].exercises[index].length > subIndex
+  ) {
+    startExercise = exerciseSelection[day].exercises[index].at(subIndex)!;
   }
 
   const [exercise, exerciseDispatch] = useImmerReducer(
@@ -181,6 +181,8 @@ const SelectExerciseModal = ({ closeModal, exerciseLocation }: Props) => {
                 exerciseLocation,
                 newExerciseInfo: exercise,
               });
+
+              closeModal();
             }}
           >
             Add exercise

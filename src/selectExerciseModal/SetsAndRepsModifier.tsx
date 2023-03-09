@@ -13,6 +13,19 @@ interface Props {
 }
 
 const SetsAndRepsModifier = ({ reducerDispatch, exercise }: Props) => {
+  const setsInRangeForm = exercise.numOfSets.includes("-");
+  const repsInRangeForm = exercise.numOfReps.includes("-");
+
+  let lowerSetsValue = setsInRangeForm ? exercise.numOfSets.split("-")[0] : "1";
+  let higherSetsValue = setsInRangeForm
+    ? exercise.numOfSets.split("-")[1]
+    : "2";
+
+  let lowerRepsValue = repsInRangeForm ? exercise.numOfReps.split("-")[0] : "1";
+  let higherRepsValue = repsInRangeForm
+    ? exercise.numOfReps.split("-")[1]
+    : "2";
+
   return (
     <div>
       <div>
@@ -29,8 +42,8 @@ const SetsAndRepsModifier = ({ reducerDispatch, exercise }: Props) => {
             id="sets"
             lowerValueLabel="Lower end of range"
             higherValueLabel="Higher end of range"
-            lowerValue={Number(exercise.numOfSets.split("-")[0])}
-            higherValue={Number(exercise.numOfSets.split("-")[1])}
+            lowerValue={Number(lowerSetsValue)}
+            higherValue={Number(higherSetsValue)}
             currentSets={exercise.numOfSets}
             currentReps={exercise.numOfReps}
             reducerDispatch={reducerDispatch}
@@ -58,8 +71,8 @@ const SetsAndRepsModifier = ({ reducerDispatch, exercise }: Props) => {
             id="reps"
             lowerValueLabel="Lower end of range"
             higherValueLabel="Higher end of range"
-            lowerValue={Number(exercise.numOfReps.split("-")[0])}
-            higherValue={Number(exercise.numOfReps.split("-")[1])}
+            lowerValue={Number(lowerRepsValue)}
+            higherValue={Number(higherRepsValue)}
             currentSets={exercise.numOfSets}
             currentReps={exercise.numOfReps}
             reducerDispatch={reducerDispatch}

@@ -1,4 +1,5 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch } from "react";
+import exerciseData from "../exerciseData";
 import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
@@ -85,6 +86,11 @@ const Select = ({
       case "muscle-group-select":
         dispatchAction.type = "UPDATE_MUSCLE_GROUP";
         dispatchAction.newInfo = option;
+        reducerDispatch(dispatchAction);
+        reducerDispatch({
+          type: "UPDATE_NAME",
+          newInfo: exerciseData[option][0],
+        });
         break;
       case "exercise-select":
         dispatchAction.type = "UPDATE_NAME";
