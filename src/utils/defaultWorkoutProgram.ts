@@ -1,6 +1,8 @@
 import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
-const emptyWorkoutObject: WorkoutProgram = {
+const defaultWorkoutProgram: WorkoutProgram = {
+  numOfDaysPerWeek: 1,
+  numOfWeeks: 1,
   volume: {
     Abs: 0,
     "Back (Horizontal)": 0,
@@ -25,4 +27,4 @@ const emptyWorkoutObject: WorkoutProgram = {
   ],
 };
 
-export default emptyWorkoutObject;
+export default defaultWorkoutProgram;
