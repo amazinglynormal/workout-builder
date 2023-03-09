@@ -1,27 +1,25 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent } from "react";
+import {
+  useWorkoutProgram,
+  useWorkoutProgramDispatch,
+} from "../context/WorkoutProgramContext";
 
-interface Props {
-  days: number;
-  weeks: number;
-  setNumOfWorkoutDays: Dispatch<SetStateAction<number>>;
-  setNumOfWeeksToRunProgram: Dispatch<SetStateAction<number>>;
-}
+const DaysAndWeeksForm = () => {
+  const { numOfDaysPerWeek, numOfWeeks } = useWorkoutProgram();
+  const dispatch = useWorkoutProgramDispatch();
 
-const DaysAndWeeksForm = ({
-  days,
-  weeks,
-  setNumOfWorkoutDays,
-  setNumOfWeeksToRunProgram,
-}: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const newValue = Number(event.target.value);
     switch (id) {
       case "days":
-        setNumOfWorkoutDays(newValue);
+        dispatch({
+          type: "EDIT_NUM_OF_DAYS",
+          newNumOfDays: newValue,
+        });
         break;
       case "weeks":
-        setNumOfWeeksToRunProgram(newValue);
+        dispatch({ type: "EDIT_NUM_OF_WEEKS", newNumOfWeeks: newValue });
         break;
     }
   };
@@ -37,7 +35,7 @@ const DaysAndWeeksForm = ({
           type="number"
           min="1"
           max="7"
-          value={days}
+          value={numOfDaysPerWeek}
           onChange={onChangeHandler}
         />
       </div>
@@ -49,7 +47,7 @@ const DaysAndWeeksForm = ({
           type="number"
           min="1"
           max="52"
-          value={weeks}
+          value={numOfWeeks}
           onChange={onChangeHandler}
         />
       </div>
