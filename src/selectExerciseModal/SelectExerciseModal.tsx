@@ -7,23 +7,86 @@ import SetsAndRepsModifier from "./SetsAndRepsModifier";
 import AddNote from "./AddNote";
 import AddCustomExercise from "./AddCustomExercise";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
+import Exercise from "../interfacesAndTypes/Exercise.interface";
+import SetScheme from "../interfacesAndTypes/SetScheme.type";
+import RepScheme from "../interfacesAndTypes/RepScheme.type";
+import { useImmerReducer } from "use-immer";
+import {
+  useWorkoutProgram,
+  useWorkoutProgramDispatch,
+} from "../context/WorkoutProgramContext";
+import defaultExercise from "../utils/defaultExercise";
 
 interface Props {
   closeModal: () => void;
   exerciseLocation: ExerciseLocation;
 }
 
-const SelectExerciseModal = ({ closeModal }: Props) => {
+export type ExerciseReducerAction =
+  | {
+      type:
+        | "UPDATE_NAME"
+        | "UPDATE_MUSCLE_GROUP"
+        | "UPDATE_SETS_NUM"
+        | "UPDATE_REPS_NUM";
+      newInfo: string;
+    }
+  | {
+      type: "UPDATE_SET_SCHEME";
+      newInfo: SetScheme;
+    }
+  | {
+      type: "UPDATE_REP_SCHEME";
+      newInfo: RepScheme;
+    }
+  | {
+      type: "UPDATE_NOTE";
+      newInfo: string | undefined;
+    };
+
+function exerciseReducer(draft: Exercise, action: ExerciseReducerAction) {
+  switch (action.type) {
+    case "UPDATE_NAME":
+      draft.name = action.newInfo;
+      break;
+    case "UPDATE_MUSCLE_GROUP":
+      draft.muscleGroup = action.newInfo;
+      break;
+    case "UPDATE_SETS_NUM":
+      draft.numOfSets = action.newInfo;
+      break;
+    case "UPDATE_REPS_NUM":
+      draft.numOfReps = action.newInfo;
+      break;
+    case "UPDATE_NOTE":
+      draft.note = action.newInfo;
+      break;
+    case "UPDATE_SET_SCHEME":
+      draft.setScheme = action.newInfo;
+      break;
+    case "UPDATE_REP_SCHEME":
+      draft.repScheme = action.newInfo;
+      break;
+  }
+}
+
+const SelectExerciseModal = ({ closeModal, exerciseLocation }: Props) => {
+  const { exerciseSelection } = useWorkoutProgram();
+  const dispatch = useWorkoutProgramDispatch();
+
+  let startExercise = exerciseSelection[exerciseLocation.day].exercises[
+    exerciseLocation.index
+  ].at(exerciseLocation.subIndex);
+
+  if (!startExercise) {
+    startExercise = defaultExercise;
+  }
+
+  const [exercise, exerciseDispatch] = useImmerReducer(
+    exerciseReducer,
+    startExercise
+  );
   let muscleGroups = Object.keys(exerciseData);
-  const [selectedMuscleGroup, setSelectedMuscleGroup] = useState(
-    muscleGroups[0]
-  );
-
-  const [selectedExercise, setSelectedExercise] = useState(
-    exerciseData[selectedMuscleGroup][0]
-  );
-
-  const [note, setNote] = useState<string | undefined>("");
 
   const [chooseExerciseMode, setChooseExerciseMode] = useState<
     "exercise-select" | "custom-exercise"
@@ -32,10 +95,16 @@ const SelectExerciseModal = ({ closeModal }: Props) => {
   const onCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     if (id === "use-exercise-select") {
-      setSelectedExercise(exerciseData[selectedMuscleGroup][0]);
+      exerciseDispatch({
+        type: "UPDATE_NAME",
+        newInfo: exerciseData[exercise.muscleGroup][0],
+      });
       setChooseExerciseMode("exercise-select");
     } else if (id === "use-custom-exercise") {
-      setSelectedExercise("");
+      exerciseDispatch({
+        type: "UPDATE_NAME",
+        newInfo: "Super Magic Ab Crunch",
+      });
       setChooseExerciseMode("custom-exercise");
     }
   };
@@ -62,16 +131,16 @@ const SelectExerciseModal = ({ closeModal }: Props) => {
             id="muscle-group-select"
             label="Muscle Group"
             options={muscleGroups}
-            selected={selectedMuscleGroup}
-            setSelected={setSelectedMuscleGroup}
+            selected={exercise.muscleGroup}
+            reducerDispatch={exerciseDispatch}
             isDisabled={chooseExerciseMode === "custom-exercise"}
           />
           <Select
             id="exercise-select"
             label="Exercises"
-            options={exerciseData[selectedMuscleGroup]}
-            selected={selectedExercise}
-            setSelected={setSelectedExercise}
+            options={exerciseData[exercise.muscleGroup]}
+            selected={exercise.name}
+            reducerDispatch={exerciseDispatch}
             isDisabled={chooseExerciseMode === "custom-exercise"}
           />
         </div>
@@ -90,18 +159,32 @@ const SelectExerciseModal = ({ closeModal }: Props) => {
           <AddCustomExercise
             muscleGroupOptions={muscleGroups}
             isDisabled={chooseExerciseMode === "exercise-select"}
-            customExercise={selectedExercise}
-            selectedMuscleGroup={selectedMuscleGroup}
-            setSelectedMuscleGroup={setSelectedMuscleGroup}
-            setCustomExercise={setSelectedExercise}
+            customExercise={exercise.name}
+            selectedMuscleGroup={exercise.muscleGroup}
+            reducerDispatch={exerciseDispatch}
           />
         </div>
         <div>
-          <SetsAndRepsModifier />
-          <AddNote note={note} setNote={setNote} />
+          <SetsAndRepsModifier
+            reducerDispatch={exerciseDispatch}
+            exercise={exercise}
+          />
+          <AddNote note={exercise.note} setNote={exerciseDispatch} />
         </div>
         <div>
-          <button type="button">Add exercise</button>
+          <button
+            type="button"
+            onClick={() => {
+              const type = startExercise ? "EDIT_EXERCISE" : "ADD_EXERCISE";
+              dispatch({
+                type,
+                exerciseLocation,
+                newExerciseInfo: exercise,
+              });
+            }}
+          >
+            Add exercise
+          </button>
           <button type="button" onClick={closeModal}>
             Cancel
           </button>

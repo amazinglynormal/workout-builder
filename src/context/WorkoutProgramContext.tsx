@@ -7,8 +7,9 @@ import recalculateVolume from "../utils/recalculateVolume";
 import testWorkoutProgram from "../test-utils/testWorkoutProgram";
 
 const WorkoutProgramContext = createContext(defaultWorkoutProgram);
-const WorkoutProgramDispatchContext =
-  createContext<React.Dispatch<Action> | null>(null);
+const WorkoutProgramDispatchContext = createContext<React.Dispatch<Action>>(
+  () => {}
+);
 
 function workoutProgramReducer(draft: WorkoutProgram, action: Action) {
   switch (action.type) {
@@ -85,6 +86,15 @@ export function WorkoutProgramProvider({ children }: Props) {
   );
 }
 
+export function useWorkoutProgram() {
+  return useContext(WorkoutProgramContext);
+}
+
+export function useWorkoutProgramDispatch() {
+  return useContext(WorkoutProgramDispatchContext);
+}
+
+// PROVIDER FOR TESTING COMPONENTS
 export function TestWorkoutProgramProvider({ children }: Props) {
   const [workoutProgram, dispatch] = useImmerReducer(
     workoutProgramReducer,
@@ -98,12 +108,4 @@ export function TestWorkoutProgramProvider({ children }: Props) {
       </WorkoutProgramDispatchContext.Provider>
     </WorkoutProgramContext.Provider>
   );
-}
-
-export function useWorkoutProgram() {
-  return useContext(WorkoutProgramContext);
-}
-
-export function useWorkoutProgramDispatch() {
-  return useContext(WorkoutProgramDispatchContext);
 }

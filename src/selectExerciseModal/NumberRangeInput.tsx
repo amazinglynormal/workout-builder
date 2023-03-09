@@ -1,4 +1,5 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch } from "react";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   id: string;
@@ -6,7 +7,9 @@ interface Props {
   higherValue: number;
   lowerValueLabel: string;
   higherValueLabel: string;
-  changeHandler: (id: string, newValue: string) => void;
+  currentSets: string;
+  currentReps: string;
+  reducerDispatch: Dispatch<ExerciseReducerAction>;
 }
 
 const NumberRangeInput = ({
@@ -15,13 +18,99 @@ const NumberRangeInput = ({
   higherValue,
   lowerValueLabel,
   higherValueLabel,
-  changeHandler,
+  currentSets,
+  currentReps,
+  reducerDispatch,
 }: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+    const value = event.target.value;
     const id = event.target.id;
 
-    changeHandler(id, newValue);
+    switch (id) {
+      case "reps-lower-value": {
+        const newValue = Number(value);
+        if (currentReps.includes("-")) {
+          let currReps = currentReps.split("-");
+          if (newValue >= Number(currReps[1])) {
+            currReps[1] = (newValue + 1).toString();
+          }
+
+          reducerDispatch({
+            type: "UPDATE_REPS_NUM",
+            newInfo: `${newValue}-${currReps[1]}`,
+          });
+          return;
+        }
+
+        reducerDispatch({
+          type: "UPDATE_REPS_NUM",
+          newInfo: `${value}-${value + 1}`,
+        });
+
+        return;
+      }
+      case "reps-higher-value": {
+        const newValue = Number(value);
+        if (currentReps.includes("-")) {
+          let currReps = currentReps.split("-");
+          if (newValue <= Number(currReps[0])) {
+            currReps[0] = (newValue - 1).toString();
+          }
+
+          reducerDispatch({
+            type: "UPDATE_REPS_NUM",
+            newInfo: `${currReps[0]}-${newValue}`,
+          });
+          return;
+        }
+
+        reducerDispatch({
+          type: "UPDATE_REPS_NUM",
+          newInfo: `${newValue - 1}-${newValue}`,
+        });
+        return;
+      }
+      case "sets-lower-value": {
+        const newValue = Number(value);
+        if (currentSets.includes("-")) {
+          let currSets = currentSets.split("-");
+          if (newValue >= Number(currSets[1])) {
+            currSets[1] = (newValue + 1).toString();
+          }
+          reducerDispatch({
+            type: "UPDATE_SETS_NUM",
+            newInfo: `${newValue}-${currSets[1]}`,
+          });
+          return;
+        }
+
+        reducerDispatch({
+          type: "UPDATE_SETS_NUM",
+          newInfo: `${newValue}-${newValue + 1}`,
+        });
+        return;
+      }
+      case "sets-higher-value": {
+        const newValue = Number(value);
+        if (currentSets.includes("-")) {
+          let currSets = currentSets.split("-");
+          if (newValue <= Number(currSets[0])) {
+            currSets[0] = (newValue - 1).toString();
+          }
+          reducerDispatch({
+            type: "UPDATE_SETS_NUM",
+            newInfo: `${currSets[0]}-${newValue}`,
+          });
+          return;
+        }
+        reducerDispatch({
+          type: "UPDATE_SETS_NUM",
+          newInfo: `${newValue - 1}-${newValue}`,
+        });
+
+        return;
+      }
+    }
   };
 
   return (

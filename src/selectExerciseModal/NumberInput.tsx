@@ -1,17 +1,30 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch } from "react";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   value: number;
   label: string;
   id: string;
-  changeHandler: (id: string, newValue: string) => void;
+  reducerDispatch: Dispatch<ExerciseReducerAction>;
 }
 
-const NumberInput = ({ value, label, id, changeHandler }: Props) => {
+const NumberInput = ({ value, label, id, reducerDispatch }: Props) => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     const id = event.target.id;
-    changeHandler(id, newValue);
+    switch (id) {
+      case "numOfSets":
+        reducerDispatch({
+          type: "UPDATE_SETS_NUM",
+          newInfo: newValue,
+        });
+        return;
+      case "numOfReps":
+        reducerDispatch({
+          type: "UPDATE_REPS_NUM",
+          newInfo: newValue,
+        });
+    }
   };
 
   return (

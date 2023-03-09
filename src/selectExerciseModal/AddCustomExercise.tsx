@@ -1,25 +1,27 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import Select from "./Select";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   isDisabled: boolean;
   muscleGroupOptions: string[];
   customExercise: string;
-  setCustomExercise: Dispatch<SetStateAction<string>>;
   selectedMuscleGroup: string;
-  setSelectedMuscleGroup: Dispatch<SetStateAction<string>>;
+  reducerDispatch: Dispatch<ExerciseReducerAction>;
 }
 
 const AddCustomExercise = ({
   isDisabled,
   muscleGroupOptions,
   customExercise,
-  setCustomExercise,
   selectedMuscleGroup,
-  setSelectedMuscleGroup,
+  reducerDispatch,
 }: Props) => {
   const onInputTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCustomExercise(event.target.value);
+    reducerDispatch({
+      type: "UPDATE_NAME",
+      newInfo: event.target.value,
+    });
   };
 
   return (
@@ -40,7 +42,7 @@ const AddCustomExercise = ({
         label="custom-muscle-group-select"
         isDisabled={isDisabled}
         options={muscleGroupOptions}
-        setSelected={setSelectedMuscleGroup}
+        reducerDispatch={reducerDispatch}
         selected={selectedMuscleGroup}
       />
     </div>

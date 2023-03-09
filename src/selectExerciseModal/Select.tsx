@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   id: string;
@@ -10,8 +11,7 @@ interface Props {
       };
   isDisabled?: boolean;
   selected: string;
-  changeHandler?: (id: string, value: string) => void;
-  setSelected?: Dispatch<SetStateAction<any>>;
+  reducerDispatch: Dispatch<ExerciseReducerAction>;
 }
 
 const Select = ({
@@ -20,8 +20,7 @@ const Select = ({
   options,
   isDisabled = false,
   selected,
-  setSelected,
-  changeHandler,
+  reducerDispatch,
 }: Props) => {
   const isSelectOptionsArray = Array.isArray(options);
 
@@ -52,13 +51,50 @@ const Select = ({
   }
 
   const onChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-    const option = event.target.value;
+    let option = event.target.value;
     const id = event.target.id;
-    if (setSelected) {
-      setSelected(option);
-    } else if (changeHandler) {
-      changeHandler(id, option);
+
+    if (id === "Sets" && (option === "Sets" || option === "Set Range")) {
+      reducerDispatch({
+        type: "UPDATE_SET_SCHEME",
+        newInfo: option,
+      });
+
+      return;
     }
+
+    if (
+      id === "Reps" &&
+      (option === "Reps" || option === "Rep Range" || option === "Rep Goal")
+    ) {
+      reducerDispatch({
+        type: "UPDATE_REP_SCHEME",
+        newInfo: option,
+      });
+
+      return;
+    }
+
+    const dispatchAction: ExerciseReducerAction = {
+      type: "UPDATE_MUSCLE_GROUP",
+      newInfo: "Abs",
+    };
+
+    switch (id) {
+      case "custom-muscle-group-select":
+      case "muscle-group-select":
+        dispatchAction.type = "UPDATE_MUSCLE_GROUP";
+        dispatchAction.newInfo = option;
+        break;
+      case "exercise-select":
+        dispatchAction.type = "UPDATE_NAME";
+        dispatchAction.newInfo = option;
+        break;
+      default:
+        return;
+    }
+
+    reducerDispatch(dispatchAction);
   };
 
   return (
