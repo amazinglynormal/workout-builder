@@ -2,12 +2,12 @@ import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DayHeader from "./DayHeader";
 
-const mockSetTitle = jest.fn();
+const mockReducerDispatch = jest.fn();
 
 describe("<DayHeader>", () => {
   test("renders correctly in the DOM", () => {
     const { getByRole, getAllByRole } = render(
-      <DayHeader title="test title" setTitle={mockSetTitle} />
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
 
     const title = getByRole("heading");
@@ -21,7 +21,7 @@ describe("<DayHeader>", () => {
 
   test("renders input instead heading when 'change' button is clicked", () => {
     const { getByRole, getAllByRole, getByLabelText } = render(
-      <DayHeader title="test title" setTitle={mockSetTitle} />
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
 
     const title = getByRole("heading");
@@ -40,7 +40,7 @@ describe("<DayHeader>", () => {
 
   test("calls setTitle when form is submitted", () => {
     const { getByRole, getAllByRole, getByLabelText } = render(
-      <DayHeader title="test title" setTitle={mockSetTitle} />
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
 
     const buttons = getAllByRole("button");
@@ -50,12 +50,12 @@ describe("<DayHeader>", () => {
     const input = getByLabelText("Change day title");
 
     act(() => userEvent.type(input, "testing{Enter}"));
-    expect(mockSetTitle).toHaveBeenCalled();
+    expect(mockReducerDispatch).toHaveBeenCalled();
   });
 
   test("renders header instead of input when form is submitted", () => {
     const { getByRole, getAllByRole, getByLabelText } = render(
-      <DayHeader title="test title" setTitle={mockSetTitle} />
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
 
     let title = getByRole("heading");
@@ -83,7 +83,7 @@ describe("<DayHeader>", () => {
 
   test("renders header instead of input when 'cancel' button is clicked", () => {
     const { getByRole, getAllByRole, getByLabelText } = render(
-      <DayHeader title="test title" setTitle={mockSetTitle} />
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
 
     let title = getByRole("heading");

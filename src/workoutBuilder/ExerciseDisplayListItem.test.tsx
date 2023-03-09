@@ -34,6 +34,7 @@ describe("<ExerciseDisplayListItem>", () => {
           <ExerciseDisplayListItem
             exercise={testExerciseList[0][0]}
             index={0}
+            subIndex={0}
             deleteExercise={mockDeleteExercise}
           />
         </li>
@@ -57,6 +58,7 @@ describe("<ExerciseDisplayListItem>", () => {
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
             index={0}
+            subIndex={0}
             deleteExercise={mockDeleteExercise}
           />
         </li>
@@ -82,6 +84,7 @@ describe("<ExerciseDisplayListItem>", () => {
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
             index={0}
+            subIndex={0}
             deleteExercise={mockDeleteExercise}
           />
         </li>
@@ -107,6 +110,7 @@ describe("<ExerciseDisplayListItem>", () => {
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
             index={0}
+            subIndex={0}
             deleteExercise={mockDeleteExercise}
           />
         </li>
