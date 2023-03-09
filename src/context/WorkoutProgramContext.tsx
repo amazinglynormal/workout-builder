@@ -4,6 +4,7 @@ import defaultWorkoutProgram from "../utils/defaultWorkoutProgram";
 import Action from "./workoutProgramReducerAction.type";
 import { useImmerReducer } from "use-immer";
 import recalculateVolume from "../utils/recalculateVolume";
+import testWorkoutProgram from "../test-utils/testWorkoutProgram";
 
 const WorkoutProgramContext = createContext(defaultWorkoutProgram);
 const WorkoutProgramDispatchContext =
@@ -73,6 +74,21 @@ export function WorkoutProgramProvider({ children }: Props) {
   const [workoutProgram, dispatch] = useImmerReducer(
     workoutProgramReducer,
     defaultWorkoutProgram
+  );
+
+  return (
+    <WorkoutProgramContext.Provider value={workoutProgram}>
+      <WorkoutProgramDispatchContext.Provider value={dispatch}>
+        {children}
+      </WorkoutProgramDispatchContext.Provider>
+    </WorkoutProgramContext.Provider>
+  );
+}
+
+export function TestWorkoutProgramProvider({ children }: Props) {
+  const [workoutProgram, dispatch] = useImmerReducer(
+    workoutProgramReducer,
+    testWorkoutProgram
   );
 
   return (

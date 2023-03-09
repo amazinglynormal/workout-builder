@@ -1,6 +1,8 @@
 import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
-const testWorkoutObject: WorkoutProgram = {
+const testWorkoutProgram: WorkoutProgram = {
+  numOfDaysPerWeek: 1,
+  numOfWeeks: 1,
   volume: {
     Abs: 6,
     "Back (Horizontal)": 6,
@@ -25,4 +27,4 @@ const testWorkoutObject: WorkoutProgram = {
   ],
 };
 
-export default testWorkoutObject;
+export default testWorkoutProgram;
