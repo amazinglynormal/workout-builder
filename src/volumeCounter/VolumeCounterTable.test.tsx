@@ -1,5 +1,4 @@
 import { render } from "../test-utils/test-utils";
-import testWorkoutProgram from "../test-utils/testWorkoutProgram";
 import VolumeCounterTable from "./VolumeCounterTable";
 
 describe("<VolumeCounterTable>", () => {
