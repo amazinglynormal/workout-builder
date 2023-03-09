@@ -1,12 +1,10 @@
-import { render } from "@testing-library/react";
+import { render } from "../test-utils/test-utils";
+import testWorkoutProgram from "../test-utils/testWorkoutProgram";
 import VolumeCounterTable from "./VolumeCounterTable";
-import testWorkoutObject from "../test-utils/testWorkoutObject";
 
 describe("<VolumeCounterTable>", () => {
   test("renders correctly in the DOM", () => {
-    const { getAllByRole, getByRole } = render(
-      <VolumeCounterTable workoutProgram={testWorkoutObject} />
-    );
+    const { getAllByRole, getByRole } = render(<VolumeCounterTable />);
 
     const table = getByRole("table");
     expect(table).toBeInTheDocument();

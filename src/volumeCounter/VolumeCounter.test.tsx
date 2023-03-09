@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import VolumeCounter from "./VolumeCounter";
-import testWorkoutObject from "../test-utils/testWorkoutObject";
+import testWorkoutObject from "../test-utils/testWorkoutProgram";
 
 describe("<VolumeCounter>", () => {
   test("renders correctly in the DOM", () => {

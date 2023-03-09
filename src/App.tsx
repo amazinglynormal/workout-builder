@@ -45,7 +45,7 @@ function App() {
           setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
           openModal={openModal}
         />
-        <VolumeCounter workoutProgram={workoutProgram} />
+        <VolumeCounter />
       </WorkoutProgramProvider>
     </div>
   );
