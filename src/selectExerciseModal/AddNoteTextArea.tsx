@@ -1,8 +1,9 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   note?: string;
-  setNote: Dispatch<SetStateAction<string | undefined>>;
+  setNote: Dispatch<ExerciseReducerAction>;
   setShowTextArea: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -15,7 +16,7 @@ const AddNoteTextArea = ({ note, setNote, setShowTextArea }: Props) => {
   };
 
   const onSubmitHandler = () => {
-    setNote(localNoteState);
+    setNote({ type: "UPDATE_NOTE", newInfo: localNoteState });
     setShowTextArea(false);
   };
 

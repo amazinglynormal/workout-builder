@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, useState } from "react";
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/outline";
 import AddNoteTextArea from "./AddNoteTextArea";
+import { ExerciseReducerAction } from "./SelectExerciseModal";
 
 interface Props {
   note?: string;
-  setNote: Dispatch<SetStateAction<string | undefined>>;
+  setNote: Dispatch<ExerciseReducerAction>;
 }
 
 const AddNote = ({ note, setNote }: Props) => {
