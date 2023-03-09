@@ -1,4 +1,3 @@
-import Workout from "../interfacesAndTypes/WorkoutProgram.interface";
 import VolumeCounterTable from "./VolumeCounterTable";
 
 const VolumeCounter = () => {
