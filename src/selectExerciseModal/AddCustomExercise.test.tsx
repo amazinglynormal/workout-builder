@@ -4,8 +4,7 @@ import AddCustomExercise from "./AddCustomExercise";
 
 const testOptions = ["option 1", "option 2", "option 3"];
 
-const mockSetSelectedMuscleGroup = jest.fn();
-const mockSetCustomExercise = jest.fn();
+const mockReducerDispatch = jest.fn();
 
 describe("<AddCustomExercise>", () => {
   test("renders correctly in the DOM when not disabled", () => {
@@ -15,8 +14,7 @@ describe("<AddCustomExercise>", () => {
         isDisabled={false}
         customExercise={""}
         selectedMuscleGroup={testOptions[0]}
-        setSelectedMuscleGroup={mockSetSelectedMuscleGroup}
-        setCustomExercise={mockSetCustomExercise}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -41,8 +39,7 @@ describe("<AddCustomExercise>", () => {
         isDisabled={true}
         customExercise={""}
         selectedMuscleGroup={testOptions[0]}
-        setSelectedMuscleGroup={mockSetSelectedMuscleGroup}
-        setCustomExercise={mockSetCustomExercise}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -68,8 +65,7 @@ describe("<AddCustomExercise>", () => {
         isDisabled={false}
         customExercise={"Test exercise"}
         selectedMuscleGroup={testOptions[0]}
-        setSelectedMuscleGroup={mockSetSelectedMuscleGroup}
-        setCustomExercise={mockSetCustomExercise}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -78,21 +74,20 @@ describe("<AddCustomExercise>", () => {
     expect(customExerciseInput).not.toBeDisabled();
   });
 
-  test("setCustomExercise is called text input changes", () => {
+  test("reducerDispatch is called text input changes", () => {
     const { getByLabelText } = render(
       <AddCustomExercise
         muscleGroupOptions={testOptions}
         isDisabled={false}
         customExercise={""}
         selectedMuscleGroup={testOptions[0]}
-        setSelectedMuscleGroup={mockSetSelectedMuscleGroup}
-        setCustomExercise={mockSetCustomExercise}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
     const customExerciseInput = getByLabelText("Add custom exercise");
     expect(customExerciseInput).toHaveValue("");
     userEvent.type(customExerciseInput, "custom input");
-    expect(mockSetCustomExercise).toHaveBeenCalled();
+    expect(mockReducerDispatch).toHaveBeenCalled();
   });
 });
