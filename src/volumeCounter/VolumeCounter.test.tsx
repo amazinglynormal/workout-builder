@@ -1,12 +1,9 @@
 import { render } from "@testing-library/react";
 import VolumeCounter from "./VolumeCounter";
-import testWorkoutObject from "../test-utils/testWorkoutProgram";
 
 describe("<VolumeCounter>", () => {
   test("renders correctly in the DOM", () => {
-    const { getByRole, getByText } = render(
-      <VolumeCounter workoutProgram={testWorkoutObject} />
-    );
+    const { getByRole, getByText } = render(<VolumeCounter />);
 
     const heading = getByRole("heading");
     expect(heading).toBeInTheDocument();
