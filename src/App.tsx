@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import VolumeCounter from "./volumeCounter/VolumeCounter";
-import emptyWorkoutObject from "./utils/emptyWorkoutObject";
+import emptyWorkoutObject from "./utils/defaultWorkoutProgram";
 import WorkoutBuilder from "./workoutBuilder/WorkoutBuilder";
 import SelectExerciseModal from "./selectExerciseModal/SelectExerciseModal";
 import ExerciseLocation from "./interfacesAndTypes/ExerciseLocation.interface";
+import { WorkoutProgramProvider } from "./context/WorkoutProgramContext";
 
 function App() {
   const [numOfWorkoutDays, setNumOfWorkoutDays] = useState(1);
@@ -28,22 +29,24 @@ function App() {
 
   return (
     <div>
-      {showModal && (
-        <SelectExerciseModal
-          closeModal={closeModal}
-          exerciseLocation={exerciseLocation}
+      <WorkoutProgramProvider>
+        {showModal && (
+          <SelectExerciseModal
+            closeModal={closeModal}
+            exerciseLocation={exerciseLocation}
+          />
+        )}
+        <Header />
+        <WorkoutBuilder
+          workoutProgram={workoutProgram}
+          numOfWorkoutDays={numOfWorkoutDays}
+          numOfWeeksToRunProgram={numOfWeeksToRunProgram}
+          setNumOfWorkoutDays={setNumOfWorkoutDays}
+          setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
+          openModal={openModal}
         />
-      )}
-      <Header />
-      <WorkoutBuilder
-        workoutProgram={workoutProgram}
-        numOfWorkoutDays={numOfWorkoutDays}
-        numOfWeeksToRunProgram={numOfWeeksToRunProgram}
-        setNumOfWorkoutDays={setNumOfWorkoutDays}
-        setNumOfWeeksToRunProgram={setNumOfWeeksToRunProgram}
-        openModal={openModal}
-      />
-      <VolumeCounter workoutProgram={workoutProgram} />
+        <VolumeCounter workoutProgram={workoutProgram} />
+      </WorkoutProgramProvider>
     </div>
   );
 }
