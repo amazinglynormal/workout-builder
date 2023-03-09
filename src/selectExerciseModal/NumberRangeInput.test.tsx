@@ -1,8 +1,18 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Exercise from "../interfacesAndTypes/Exercise.interface";
 import NumberRangeInput from "./NumberRangeInput";
 
-const mockChangeHandler = jest.fn();
+const mockreducerDispatch = jest.fn();
+
+const exerciseA: Exercise = {
+  name: "Squats",
+  muscleGroup: "Quads",
+  setScheme: "Set Range",
+  numOfSets: "2-4",
+  repScheme: "Rep Range",
+  numOfReps: "5-7",
+};
 
 describe("<NumberRangeInput>", () => {
   test("renders correctly in the DOM", () => {
@@ -13,7 +23,9 @@ describe("<NumberRangeInput>", () => {
         higherValueLabel="Test Higher Label"
         lowerValue={1}
         higherValue={2}
-        changeHandler={mockChangeHandler}
+        currentReps={exerciseA.numOfReps}
+        currentSets={exerciseA.numOfSets}
+        reducerDispatch={mockreducerDispatch}
       />
     );
 
@@ -26,20 +38,25 @@ describe("<NumberRangeInput>", () => {
     expect(higherRangeInput).toHaveValue(2);
   });
 
-  test("calls changeHandler when user changes value", () => {
+  test("calls reducerDispatch with correct arguments when user changes value", () => {
     const { getByLabelText } = render(
       <NumberRangeInput
-        id="test"
+        id="reps"
         lowerValueLabel="Test Lower Label"
         higherValueLabel="Test Higher Label"
-        lowerValue={1}
-        higherValue={6}
-        changeHandler={mockChangeHandler}
+        lowerValue={Number(exerciseA.numOfReps.split("-")[0])}
+        higherValue={Number(exerciseA.numOfReps.split("-")[1])}
+        currentReps={exerciseA.numOfReps}
+        currentSets={exerciseA.numOfSets}
+        reducerDispatch={mockreducerDispatch}
       />
     );
     const higherRangeInput = getByLabelText("Test Higher Label");
     userEvent.type(higherRangeInput, "7");
-    expect(mockChangeHandler).toHaveBeenCalled();
+    expect(mockreducerDispatch).toHaveBeenCalledWith({
+      type: "UPDATE_REPS_NUM",
+      newInfo: "5-77",
+    });
   });
 
   test("focus on click", () => {
@@ -50,7 +67,9 @@ describe("<NumberRangeInput>", () => {
         higherValueLabel="Test Higher Label"
         lowerValue={1}
         higherValue={2}
-        changeHandler={mockChangeHandler}
+        currentReps={exerciseA.numOfReps}
+        currentSets={exerciseA.numOfSets}
+        reducerDispatch={mockreducerDispatch}
       />
     );
 

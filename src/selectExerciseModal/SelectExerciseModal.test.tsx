@@ -1,4 +1,4 @@
-import { act, render } from "@testing-library/react";
+import { act, render } from "../test-utils/test-utils";
 import userEvent from "@testing-library/user-event";
 import SelectExerciseModal from "./SelectExerciseModal";
 

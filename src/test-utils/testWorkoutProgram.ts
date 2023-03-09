@@ -1,4 +1,5 @@
 import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
+import testExerciseList from "./testExerciseList";
 
 const testWorkoutProgram: WorkoutProgram = {
   numOfDaysPerWeek: 1,
@@ -22,7 +23,7 @@ const testWorkoutProgram: WorkoutProgram = {
   exerciseSelection: [
     {
       title: "Test Day #1",
-      exercises: [],
+      exercises: testExerciseList,
     },
   ],
 };

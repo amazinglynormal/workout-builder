@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NumberInput from "./NumberInput";
 
-const mockChangeHandler = jest.fn();
+const mockReducerDispatch = jest.fn();
 
 describe("<NumberInput>", () => {
   test("renders correctly in the DOM", () => {
@@ -11,7 +11,7 @@ describe("<NumberInput>", () => {
         id="test-id"
         label="Test Label"
         value={1}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -20,20 +20,20 @@ describe("<NumberInput>", () => {
     expect(input).toHaveValue(1);
   });
 
-  test("calls changeHandler when user changes value", async () => {
+  test("calls reducerDispatch when user changes value", async () => {
     const { getByLabelText } = render(
       <NumberInput
-        id="test-id"
+        id="numOfReps"
         label="Test Label"
         value={1}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
     const input = getByLabelText("Test Label");
     await userEvent.type(input, "3");
 
-    expect(mockChangeHandler).toHaveBeenCalled();
+    expect(mockReducerDispatch).toHaveBeenCalled();
   });
 
   test("focus on click", () => {
@@ -42,7 +42,7 @@ describe("<NumberInput>", () => {
         id="test-id"
         label="Test Label"
         value={1}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 

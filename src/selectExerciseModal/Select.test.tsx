@@ -9,7 +9,7 @@ const testOptionsTwo: { [name: string]: string[] } = {
   optionGroup2: ["option 4", "option 5", "option 6"],
 };
 
-const mockChangeHandler = jest.fn();
+const mockReducerDispatch = jest.fn();
 
 describe("<Select>", () => {
   test("renders correctly in the DOM with options array", () => {
@@ -19,7 +19,7 @@ describe("<Select>", () => {
         label="Test Label"
         options={testOptionsOne}
         selected={testOptionsOne[0]}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -35,7 +35,7 @@ describe("<Select>", () => {
         label="Test Label"
         options={testOptionsTwo}
         selected={testOptionsTwo.optionGroup2[0]}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
@@ -50,18 +50,21 @@ describe("<Select>", () => {
   test("calls onChange when user selects option", async () => {
     const { getByRole } = render(
       <Select
-        id="test-id"
+        id="exercise-select"
         label="Test Label"
         options={testOptionsOne}
         selected={testOptionsOne[0]}
-        changeHandler={mockChangeHandler}
+        reducerDispatch={mockReducerDispatch}
       />
     );
 
     userEvent.selectOptions(getByRole("combobox"), ["option 2"]);
-    expect(mockChangeHandler).toHaveBeenCalled();
+    expect(mockReducerDispatch).toHaveBeenCalledWith({
+      type: "UPDATE_NAME",
+      newInfo: "option 2",
+    });
 
     userEvent.selectOptions(getByRole("combobox"), ["option 1"]);
-    expect(mockChangeHandler).toHaveBeenCalledTimes(2);
+    expect(mockReducerDispatch).toHaveBeenCalledTimes(2);
   });
 });
