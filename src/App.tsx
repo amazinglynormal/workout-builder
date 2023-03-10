@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <WorkoutProgramProvider>
         {showModal && (
           <SelectExerciseModal
@@ -36,7 +36,7 @@ function App() {
         <WorkoutBuilder openModal={openModal} />
         <VolumeCounter />
       </WorkoutProgramProvider>
-    </div>
+    </>
   );
 }
 
