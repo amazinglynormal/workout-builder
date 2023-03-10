@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import Action from "../context/workoutProgramReducerAction.type";
 import ExerciseList from "../interfacesAndTypes/ExerciseList.type";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";

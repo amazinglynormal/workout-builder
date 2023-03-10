@@ -1,6 +1,6 @@
-import { Dispatch, useState } from "react";
-import RepScheme, { repSchemes } from "../interfacesAndTypes/RepScheme.type";
-import SetScheme, { setSchemes } from "../interfacesAndTypes/SetScheme.type";
+import { Dispatch } from "react";
+import { repSchemes } from "../interfacesAndTypes/RepScheme.type";
+import { setSchemes } from "../interfacesAndTypes/SetScheme.type";
 import Select from "./Select";
 import NumberRangeInput from "./NumberRangeInput";
 import NumberInput from "./NumberInput";

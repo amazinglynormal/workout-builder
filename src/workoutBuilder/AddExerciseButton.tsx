@@ -1,5 +1,4 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { Dispatch, SetStateAction } from "react";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
 import styles from "./AddExerciseButton.module.css";
 

@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch } from "react";
 import Select from "./Select";
 import { ExerciseReducerAction } from "./SelectExerciseModal";
 
