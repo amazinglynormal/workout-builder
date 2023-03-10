@@ -56,7 +56,12 @@ const DayHeader = ({ title, dispatch, day }: Props) => {
           </>
         )}
       </div>
-      <button type="button">Clear day</button>
+      <button
+        type="button"
+        onClick={() => dispatch({ type: "RESET_DAY", day })}
+      >
+        Reset day
+      </button>
     </header>
   );
 };

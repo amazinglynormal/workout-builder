@@ -16,7 +16,7 @@ describe("<DayHeader>", () => {
     const buttons = getAllByRole("button");
     expect(buttons.length).toBe(2);
     expect(buttons[0]).toHaveTextContent("change");
-    expect(buttons[1]).toHaveTextContent("Clear day");
+    expect(buttons[1]).toHaveTextContent("Reset day");
   });
 
   test("renders input instead heading when 'change' button is clicked", () => {
@@ -38,7 +38,7 @@ describe("<DayHeader>", () => {
     expect(input).toHaveValue("test title");
   });
 
-  test("calls setTitle when form is submitted", () => {
+  test("calls reducerDispatch when form is submitted", () => {
     const { getByRole, getAllByRole, getByLabelText } = render(
       <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
     );
@@ -103,5 +103,20 @@ describe("<DayHeader>", () => {
 
     title = getByRole("heading");
     expect(title).toBeInTheDocument();
+  });
+
+  test("calls reducerDispatch with correct arguments when 'Reset day' button is clicked", () => {
+    const { getAllByRole } = render(
+      <DayHeader title="test title" day={0} dispatch={mockReducerDispatch} />
+    );
+
+    const buttons = getAllByRole("button");
+    expect(buttons[1]).toHaveTextContent("Reset day");
+
+    userEvent.click(buttons[1]);
+    expect(mockReducerDispatch).toHaveBeenCalledWith({
+      type: "RESET_DAY",
+      day: 0,
+    });
   });
 });

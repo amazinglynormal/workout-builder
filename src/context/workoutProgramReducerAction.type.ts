@@ -34,12 +34,18 @@ type EditNumOfWeeksAction = {
   newNumOfWeeks: number;
 };
 
+type ResetDayAction = {
+  type: "RESET_DAY";
+  day: number;
+};
+
 type Action =
   | EditTitleAction
   | EditExerciseAction
   | AddExerciseAction
   | DeleteExerciseAction
   | EditNumOfDaysAction
-  | EditNumOfWeeksAction;
+  | EditNumOfWeeksAction
+  | ResetDayAction;
 
 export default Action;

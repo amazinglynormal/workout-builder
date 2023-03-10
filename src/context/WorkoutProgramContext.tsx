@@ -80,6 +80,15 @@ function workoutProgramReducer(draft: WorkoutProgram, action: Action) {
       recalculateVolume(draft);
       break;
     }
+    case "RESET_DAY": {
+      draft.exerciseSelection[action.day] = {
+        title: `Day #${action.day + 1}`,
+        exercises: [],
+      };
+
+      recalculateVolume(draft);
+      break;
+    }
   }
 }
 
