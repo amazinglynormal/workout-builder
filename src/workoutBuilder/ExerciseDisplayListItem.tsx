@@ -1,21 +1,23 @@
 import { useState } from "react";
 import Exercise from "../interfacesAndTypes/Exercise.interface";
+import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
 import styles from "./ExerciseDisplayListItem.module.css";
 
 interface Props {
   exercise: Exercise;
-  index: number;
-  subIndex: number;
   deleteExercise: (index: number, subIndex: number) => void;
+  openModal: (exerciseLocation: ExerciseLocation) => void;
+  exerciseLocation: ExerciseLocation;
 }
 
 const ExerciseDisplayListItem = ({
   exercise,
-  index,
-  subIndex,
   deleteExercise,
+  openModal,
+  exerciseLocation,
 }: Props) => {
   const [showNote, setShowNote] = useState(false);
+
   return (
     <>
       <div className={styles.listItemLayout}>
@@ -24,10 +26,17 @@ const ExerciseDisplayListItem = ({
             exercise.repScheme === "Rep Goal" ? "RG" : ""
           }`}
           <div>
-            <button type="button">Edit</button>
+            <button type="button" onClick={() => openModal(exerciseLocation)}>
+              Edit
+            </button>
             <button
               type="button"
-              onClick={() => deleteExercise(index, subIndex)}
+              onClick={() =>
+                deleteExercise(
+                  exerciseLocation.index,
+                  exerciseLocation.subIndex
+                )
+              }
             >
               Delete
             </button>

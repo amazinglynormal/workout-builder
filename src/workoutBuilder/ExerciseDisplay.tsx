@@ -27,9 +27,13 @@ const ExerciseDisplay = ({ exercises, day, openModal, dispatch }: Props) => {
           <li key={`${day}${index}-${subIndex}`}>
             <ExerciseDisplayListItem
               exercise={ex}
-              index={index}
-              subIndex={subIndex}
               deleteExercise={deleteExercise}
+              openModal={openModal}
+              exerciseLocation={{
+                day,
+                index,
+                subIndex,
+              }}
             />
           </li>
         );
@@ -53,9 +57,13 @@ const ExerciseDisplay = ({ exercises, day, openModal, dispatch }: Props) => {
         <li key={`${day}${index}-0`}>
           <ExerciseDisplayListItem
             exercise={exercise[0]}
-            index={index}
-            subIndex={0}
             deleteExercise={deleteExercise}
+            openModal={openModal}
+            exerciseLocation={{
+              day,
+              index,
+              subIndex: 0,
+            }}
           />
           <AddExerciseButton
             text="superset"
@@ -70,6 +78,7 @@ const ExerciseDisplay = ({ exercises, day, openModal, dispatch }: Props) => {
       );
     }
   });
+
   return (
     <div>
       <ol>{chosenExercises}</ol>

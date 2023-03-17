@@ -16,6 +16,7 @@ interface Props {
 const DayBuilder = ({ openModal, day }: Props) => {
   const workoutProgram = useWorkoutProgram();
   const dispatch = useWorkoutProgramDispatch();
+
   return (
     <div className={styles.border}>
       <DayHeader

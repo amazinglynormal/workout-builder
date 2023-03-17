@@ -4,6 +4,12 @@ import testExerciseList from "../test-utils/testExerciseList";
 import ExerciseDisplayListItem from "./ExerciseDisplayListItem";
 
 const mockDeleteExercise = jest.fn();
+const mockOpenModal = jest.fn();
+const exerciseLocation = {
+  day: 0,
+  index: 0,
+  subIndex: 0,
+};
 
 // Test Exercise 1
 // {
@@ -33,9 +39,9 @@ describe("<ExerciseDisplayListItem>", () => {
         <li>
           <ExerciseDisplayListItem
             exercise={testExerciseList[0][0]}
-            index={0}
-            subIndex={0}
             deleteExercise={mockDeleteExercise}
+            openModal={mockOpenModal}
+            exerciseLocation={exerciseLocation}
           />
         </li>
       </ol>
@@ -57,9 +63,9 @@ describe("<ExerciseDisplayListItem>", () => {
         <li>
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
-            index={0}
-            subIndex={0}
             deleteExercise={mockDeleteExercise}
+            openModal={mockOpenModal}
+            exerciseLocation={exerciseLocation}
           />
         </li>
       </ol>
@@ -83,9 +89,9 @@ describe("<ExerciseDisplayListItem>", () => {
         <li>
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
-            index={0}
-            subIndex={0}
             deleteExercise={mockDeleteExercise}
+            openModal={mockOpenModal}
+            exerciseLocation={exerciseLocation}
           />
         </li>
       </ol>
@@ -109,9 +115,9 @@ describe("<ExerciseDisplayListItem>", () => {
         <li>
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
-            index={0}
-            subIndex={0}
             deleteExercise={mockDeleteExercise}
+            openModal={mockOpenModal}
+            exerciseLocation={exerciseLocation}
           />
         </li>
       </ol>
@@ -141,9 +147,13 @@ describe("<ExerciseDisplayListItem>", () => {
         <li>
           <ExerciseDisplayListItem
             exercise={testExerciseList[2][2]}
-            index={0}
-            subIndex={1}
             deleteExercise={mockDeleteExercise}
+            openModal={mockOpenModal}
+            exerciseLocation={{
+              day: 0,
+              index: 0,
+              subIndex: 1,
+            }}
           />
         </li>
       </ol>
