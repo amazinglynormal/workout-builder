@@ -35,10 +35,7 @@ const styles = StyleSheet.create({
   },
   exerciseName: {
     borderRight: "2px solid black",
-    // display: "flex",
-    // flexDirection: "row",
-    // alignItems: "center",
-    width: "100",
+    minWidth: "100",
     height: "100%",
     flexGrow: 1,
     padding: "2px",
