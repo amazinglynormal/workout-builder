@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
+import Exercise from "../interfacesAndTypes/Exercise.interface";
 
 interface Props {
-  dayTitle: string;
+  exercise: Exercise;
+  index: string;
   maxSets: number;
 }
 
@@ -10,10 +12,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    border: "2px solid black",
-    height: "30px",
+    borderRight: "2px solid black",
+    borderBottom: "2px solid black",
+    borderLeft: "2px solid black",
     fontSize: "12px",
-    backgroundColor: "lightblue",
+    minHeight: 16,
   },
   container: {
     display: "flex",
@@ -30,16 +33,15 @@ const styles = StyleSheet.create({
     height: "100%",
     flexGrow: 1,
   },
-  dayTitle: {
+  exerciseName: {
     borderRight: "2px solid black",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    // display: "flex",
+    // flexDirection: "row",
+    // alignItems: "center",
     width: "100",
-    fontSize: "16px",
     height: "100%",
-
     flexGrow: 1,
+    padding: "2px",
   },
   setsAndReps: {
     borderRight: "2px solid black",
@@ -70,17 +72,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
     width: 150,
+    padding: "1px",
+    fontSize: "10px",
+    color: "#808080",
   },
 });
 
-const PDFDayHeader = ({ dayTitle, maxSets }: Props) => {
+const PDFDayRow = ({ exercise, index, maxSets }: Props) => {
   const setNumbers = [];
   for (let i = 1; i <= maxSets; i++) {
-    setNumbers.push(
-      <View key={i} style={styles.individualSetNum}>
-        <Text>{i}</Text>
-      </View>
-    );
+    setNumbers.push(<View key={i} style={styles.individualSetNum}></View>);
   }
 
   if (maxSets > 6) {
@@ -91,20 +92,22 @@ const PDFDayHeader = ({ dayTitle, maxSets }: Props) => {
     <View style={styles.layout}>
       <View style={styles.container}>
         <View style={styles.subContainer}>
-          <View style={styles.dayTitle}>
-            <Text>{dayTitle}</Text>
+          <View style={styles.exerciseName}>
+            <Text>{`${index} ${exercise.name}`}</Text>
           </View>
           <View style={styles.setsAndReps}>
-            <Text>Sets X Reps</Text>
+            <Text>{`${exercise.numOfSets} x ${exercise.numOfReps}${
+              exercise.repScheme === "Rep Goal" ? "RG" : ""
+            }`}</Text>
           </View>
         </View>
         <View style={styles.setNumber}>{setNumbers}</View>
       </View>
       <View style={styles.notes}>
-        <Text>Notes</Text>
+        <Text>{exercise.note}</Text>
       </View>
     </View>
   );
 };
 
-export default PDFDayHeader;
+export default PDFDayRow;
