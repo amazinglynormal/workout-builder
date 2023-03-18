@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import VolumeCounter from "./volumeCounter/VolumeCounter";
 import WorkoutBuilder from "./workoutBuilder/WorkoutBuilder";
 import SelectExerciseModal from "./selectExerciseModal/SelectExerciseModal";
 import ExerciseLocation from "./interfacesAndTypes/ExerciseLocation.interface";
-import { WorkoutProgramProvider } from "./context/WorkoutProgramContext";
+import {
+  useWorkoutProgram,
+  WorkoutProgramProvider,
+} from "./context/WorkoutProgramContext";
+import PDFViewerWrapper from "./pdf/PDFViewerWrapper";
 
 function App() {
+  const workoutProgram = useWorkoutProgram();
   const [showModal, setShowModal] = useState(false);
   const [exerciseLocation, setExerciseLocation] = useState<ExerciseLocation>({
     day: 0,
@@ -25,17 +30,16 @@ function App() {
 
   return (
     <>
-      <WorkoutProgramProvider>
-        {showModal && (
-          <SelectExerciseModal
-            closeModal={closeModal}
-            exerciseLocation={exerciseLocation}
-          />
-        )}
-        <Header />
-        <WorkoutBuilder openModal={openModal} />
-        <VolumeCounter />
-      </WorkoutProgramProvider>
+      {showModal && (
+        <SelectExerciseModal
+          closeModal={closeModal}
+          exerciseLocation={exerciseLocation}
+        />
+      )}
+      <Header />
+      <WorkoutBuilder openModal={openModal} />
+      <VolumeCounter />
+      <PDFViewerWrapper workoutProgram={workoutProgram} />
     </>
   );
 }
