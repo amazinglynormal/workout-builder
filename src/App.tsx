@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import VolumeCounter from "./volumeCounter/VolumeCounter";
 import WorkoutBuilder from "./workoutBuilder/WorkoutBuilder";
 import SelectExerciseModal from "./selectExerciseModal/SelectExerciseModal";
 import ExerciseLocation from "./interfacesAndTypes/ExerciseLocation.interface";
-import {
-  useWorkoutProgram,
-  WorkoutProgramProvider,
-} from "./context/WorkoutProgramContext";
+import { useWorkoutProgram } from "./context/WorkoutProgramContext";
 import PDFViewerWrapper from "./pdf/PDFViewerWrapper";
+import Navbar from "./components/Navbar";
 
 function App() {
   const workoutProgram = useWorkoutProgram();
@@ -36,6 +34,7 @@ function App() {
           exerciseLocation={exerciseLocation}
         />
       )}
+      <Navbar />
       <Header />
       <WorkoutBuilder openModal={openModal} />
       <VolumeCounter />
