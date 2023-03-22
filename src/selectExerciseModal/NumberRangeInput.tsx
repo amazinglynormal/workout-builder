@@ -121,7 +121,7 @@ const NumberRangeInput = ({
           id={`${id}-lower-value`}
           type="number"
           min="1"
-          max="100"
+          max={id === "sets" ? "9" : "100"}
           value={lowerValue}
           onChange={onChangeHandler}
         />
@@ -133,7 +133,7 @@ const NumberRangeInput = ({
           id={`${id}-higher-value`}
           type="number"
           min="2"
-          max="100"
+          max={id === "sets" ? "10" : "100"}
           value={higherValue}
           onChange={onChangeHandler}
         />

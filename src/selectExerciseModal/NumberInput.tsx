@@ -34,7 +34,7 @@ const NumberInput = ({ value, label, id, reducerDispatch }: Props) => {
         id={id}
         type="number"
         min="1"
-        max="100"
+        max={id === "numOfSets" ? "10" : "100"}
         value={value}
         onChange={onChangeHandler}
       />
