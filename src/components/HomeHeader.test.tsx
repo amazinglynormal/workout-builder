@@ -1,9 +1,9 @@
-import Header from "./Header";
+import HomeHeader from "./HomeHeader";
 import { render } from "@testing-library/react";
 
 describe("<Header>", () => {
   test("correctly renders in the dom", () => {
-    const { getByRole, getByText } = render(<Header />);
+    const { getByRole, getByText } = render(<HomeHeader />);
 
     const header = getByRole("heading");
 

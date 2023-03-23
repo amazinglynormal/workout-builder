@@ -4,6 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { WorkoutProgramProvider } from "./context/WorkoutProgramContext";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +20,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <WorkoutProgramProvider>
-      <App />
+      <App>
+        <RouterProvider router={router} />
+      </App>
     </WorkoutProgramProvider>
   </React.StrictMode>
 );

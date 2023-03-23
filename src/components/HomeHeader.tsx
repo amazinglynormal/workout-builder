@@ -1,4 +1,4 @@
-const Header = () => {
+export default function HomeHeader() {
   return (
     <header>
       <h1>Free Workout Builder</h1>
@@ -9,6 +9,4 @@ const Header = () => {
       <p>FOR FREE!!!</p>
     </header>
   );
-};
-
-export default Header;
+}
