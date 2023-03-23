@@ -6,11 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { WorkoutProgramProvider } from "./context/WorkoutProgramContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Resources from "./pages/Resources";
+import Example from "./pages/Example";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/example/:exampleName",
+    element: <Example />,
   },
   {
     path: "/resources",

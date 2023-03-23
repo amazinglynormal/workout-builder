@@ -1,5 +1,6 @@
 import Exercise from "../interfacesAndTypes/Exercise.interface";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
 type EditTitleAction = {
   type: "EDIT_TITLE";
@@ -39,6 +40,11 @@ type ResetDayAction = {
   day: number;
 };
 
+type SetEntireProgram = {
+  type: "SET_ENTIRE_PROGRAM";
+  newProgram: WorkoutProgram;
+};
+
 type Action =
   | EditTitleAction
   | EditExerciseAction
@@ -46,6 +52,7 @@ type Action =
   | DeleteExerciseAction
   | EditNumOfDaysAction
   | EditNumOfWeeksAction
-  | ResetDayAction;
+  | ResetDayAction
+  | SetEntireProgram;
 
 export default Action;
