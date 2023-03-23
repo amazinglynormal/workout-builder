@@ -2,12 +2,9 @@ import { useState } from "react";
 import ExerciseLocation from "./interfacesAndTypes/ExerciseLocation.interface";
 import { useWorkoutProgram } from "./context/WorkoutProgramContext";
 import PageLayout from "./pages/PageLayout";
+import Home from "./pages/Home";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-function App({ children }: Props) {
+function App() {
   const workoutProgram = useWorkoutProgram();
   const [showModal, setShowModal] = useState(false);
   const [exerciseLocation, setExerciseLocation] = useState<ExerciseLocation>({
@@ -25,7 +22,11 @@ function App({ children }: Props) {
     setShowModal(true);
   };
 
-  return <PageLayout>{children}</PageLayout>;
+  return (
+    <PageLayout>
+      <Home />
+    </PageLayout>
+  );
 }
 
 export default App;

@@ -17,7 +17,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li className={styles.listItem}>
-            <Link to="/" className={styles.link}>
+            <Link to="/resources" className={styles.link}>
               Resources
             </Link>
           </li>

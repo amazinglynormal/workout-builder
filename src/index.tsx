@@ -5,12 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { WorkoutProgramProvider } from "./context/WorkoutProgramContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+import Resources from "./pages/Resources";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
+  },
+  {
+    path: "/resources",
+    element: <Resources />,
   },
 ]);
 
@@ -20,9 +24,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <WorkoutProgramProvider>
-      <App>
-        <RouterProvider router={router} />
-      </App>
+      <RouterProvider router={router} />
     </WorkoutProgramProvider>
   </React.StrictMode>
 );
