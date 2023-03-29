@@ -7,7 +7,6 @@ interface ExerciseDay {
 
 interface WorkoutProgram {
   numOfDaysPerWeek: number;
-  numOfWeeks: number;
   volume: {
     [muscleGroup: string]: number;
   };

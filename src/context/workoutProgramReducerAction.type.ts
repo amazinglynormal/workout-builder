@@ -30,11 +30,6 @@ type EditNumOfDaysAction = {
   newNumOfDays: number;
 };
 
-type EditNumOfWeeksAction = {
-  type: "EDIT_NUM_OF_WEEKS";
-  newNumOfWeeks: number;
-};
-
 type ResetDayAction = {
   type: "RESET_DAY";
   day: number;
@@ -51,7 +46,6 @@ type Action =
   | AddExerciseAction
   | DeleteExerciseAction
   | EditNumOfDaysAction
-  | EditNumOfWeeksAction
   | ResetDayAction
   | SetEntireProgram;
 

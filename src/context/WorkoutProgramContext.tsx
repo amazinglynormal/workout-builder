@@ -38,10 +38,6 @@ function workoutProgramReducer(draft: WorkoutProgram, action: Action) {
       }
       break;
     }
-    case "EDIT_NUM_OF_WEEKS": {
-      draft.numOfWeeks = action.newNumOfWeeks;
-      break;
-    }
     case "ADD_EXERCISE":
     case "EDIT_EXERCISE": {
       const day = action.exerciseLocation.day;

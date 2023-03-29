@@ -2,7 +2,6 @@ import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
 const defaultWorkoutProgram: WorkoutProgram = {
   numOfDaysPerWeek: 1,
-  numOfWeeks: 1,
   volume: {
     Abs: 0,
     "Back (Horizontal)": 0,
