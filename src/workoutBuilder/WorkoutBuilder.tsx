@@ -1,5 +1,6 @@
 import { useWorkoutProgram } from "../context/WorkoutProgramContext";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 import DayBuilder from "./DayBuilder";
 import DaysAndWeeksForm from "./DaysAndWeeksForm";
 
@@ -12,7 +13,14 @@ const WorkoutBuilder = ({ openModal }: Props) => {
 
   const days = [];
   for (let i = 0; i < workoutProgram.numOfDaysPerWeek; i++) {
-    days.push(<DayBuilder key={i} day={i} openModal={openModal} />);
+    days.push(
+      <DayBuilder
+        key={i}
+        day={i}
+        openModal={openModal}
+        workoutProgram={workoutProgram}
+      />
+    );
   }
 
   return (

@@ -1,10 +1,26 @@
 import { useWorkoutProgram } from "../context/WorkoutProgramContext";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 import VolumeCounterTableRow from "./VolumeCounterTableRow";
 
-const VolumeCounterTable = () => {
+interface Props {
+  workoutProgram?: WorkoutProgram;
+}
+
+const VolumeCounterTable = ({ workoutProgram }: Props) => {
   const { volume } = useWorkoutProgram();
+
+  let useVolume: {
+    [muscleGroup: string]: number;
+  };
+
+  if (workoutProgram) {
+    useVolume = workoutProgram.volume;
+  } else {
+    useVolume = volume;
+  }
+
   const sortedMuscleGroups = Object.fromEntries(
-    Object.entries(volume).sort(([, a], [, b]) => b - a)
+    Object.entries(useVolume).sort(([, a], [, b]) => b - a)
   );
 
   const tableRows = Object.keys(sortedMuscleGroups).map((muscleGroup) => {
@@ -12,7 +28,7 @@ const VolumeCounterTable = () => {
       <VolumeCounterTableRow
         key={muscleGroup}
         exerciseName={muscleGroup}
-        exerciseVolumeCount={volume[muscleGroup]}
+        exerciseVolumeCount={useVolume[muscleGroup]}
       />
     );
   });

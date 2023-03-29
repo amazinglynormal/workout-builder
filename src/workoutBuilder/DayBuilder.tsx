@@ -3,18 +3,16 @@ import DayHeader from "./DayHeader";
 import styles from "./DayBuilder.module.css";
 import ExerciseDisplay from "./ExerciseDisplay";
 import ExerciseLocation from "../interfacesAndTypes/ExerciseLocation.interface";
-import {
-  useWorkoutProgram,
-  useWorkoutProgramDispatch,
-} from "../context/WorkoutProgramContext";
+import { useWorkoutProgramDispatch } from "../context/WorkoutProgramContext";
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 
 interface Props {
   openModal: (exerciseLocation: ExerciseLocation) => void;
   day: number;
+  workoutProgram: WorkoutProgram;
 }
 
-const DayBuilder = ({ openModal, day }: Props) => {
-  const workoutProgram = useWorkoutProgram();
+const DayBuilder = ({ openModal, day, workoutProgram }: Props) => {
   const dispatch = useWorkoutProgramDispatch();
 
   return (

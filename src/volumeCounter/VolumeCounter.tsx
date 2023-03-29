@@ -1,6 +1,11 @@
+import WorkoutProgram from "../interfacesAndTypes/WorkoutProgram.interface";
 import VolumeCounterTable from "./VolumeCounterTable";
 
-const VolumeCounter = () => {
+interface Props {
+  workoutProgram?: WorkoutProgram;
+}
+
+const VolumeCounter = ({ workoutProgram }: Props) => {
   return (
     <div>
       <h2>Volume Counter</h2>
@@ -9,7 +14,7 @@ const VolumeCounter = () => {
         exercise will vary with an individuals technique.
       </p>
       <div>
-        <VolumeCounterTable />
+        <VolumeCounterTable workoutProgram={workoutProgram} />
       </div>
     </div>
   );
